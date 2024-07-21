@@ -1,0 +1,192 @@
+#contenedor-modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(18, 18, 18, .5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    .contener-btn-close{
+        display: flex;
+        justify-content: end;
+        .btn-close-modal{
+            background-color: red;
+            font-weight: bold;
+            color: white;
+            padding: 0 11px;
+            border-radius: 50%;
+            margin-top: -30px;
+            margin-right: -35px;
+            font-size: 22px;
+            display: flex;
+            transition: background-color .3s ease-in-out;
+            &:hover{
+                background-color: rgb(178, 1, 1);
+            }
+        }
+    }
+    #modal {
+        background-color: white;
+        padding: 20px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 550px;
+    }
+}
+ /* formulario de registro titular  */
+#form-titular{
+    display: none;
+}
+
+/* tabla de tirulares  */
+#table-titulares{
+    display: none;
+}
+#table-titulares table {
+    width: 100%;
+    border: 1px solid #ddd;
+    table-layout: fixed;
+    border-radius: 10px;
+}
+
+#table-titulares th, #table-titulares td {
+    padding: 3px 2px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    @media (min-width:768px) { 
+        padding: 5px;
+        font-size: 15px;
+    }
+}
+
+#table-titulares th {
+    background-color: black;
+    color: white;
+    font-weight: normal;
+}
+
+#table-titulares tbody tr:hover {
+    background-color: #d7d5d5;
+    cursor: pointer;
+}
+
+/* estilos de los campos del formulario de agregar titular  */
+.title{
+    font-weight: bold;
+    font-size: 15px;
+}
+.mt{
+    margin-top: 10px;
+}
+.mtp{
+    margin-top: 5px;
+}
+
+.group_1,.group_4>div{
+    display: flex;
+    justify-items: center;
+    gap: 10px;
+}
+.group_3{
+    @media (min-width:768px) { 
+        display: flex;
+        gap: 10px;
+    }
+}
+.cont-ec-nd{
+    @media (min-width:768px) { 
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        justify-items: center;
+    }
+}
+
+input[type="number"],input[type="text"]{
+    padding: 5px;
+    outline: none;
+    border: solid 1px rgb(230, 223, 223);
+    border-radius: 3px;
+    width: 100%;
+}
+input[type="number"]:focus,input[type="text"]:focus{
+    border: solid 1px rgb(125, 125, 255);
+}
+#button-dni{
+    color: rgb(0, 123, 255);
+    background-color: white;
+    border: solid 1px rgb(0, 123, 255);
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-top: 3px;
+    transition: background-color .3s ease-in-out;
+}
+#button-dni:hover{
+    color: white;
+    background-color: rgb(0, 123, 255);
+    border: solid 1px rgb(0, 123, 255);
+}
+#btn-submit{
+    background-color: rgb(12, 168, 12);
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: white;
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background-color .3s ease-in-out;
+    &:hover{
+        background-color: rgb(9, 125, 9);
+    }
+}
+.img-titular{
+    width: 100px;
+    height: 80px;
+    /* height: auto; */
+    object-fit: cover;
+    margin: 0 auto;
+}
+.img-none{
+    display: none;
+}
+.invalid {
+    box-shadow: 0 0 10px rgb(255, 0, 0); /* Rojo semi-transparente */
+}
+
+/* estilos del boton droptown del datatable js */
+.btn-list-actas{
+    border: 1px solid #007BFF;
+    padding: 2px;
+    border-radius: 3px;
+    color: #007BFF;
+    font-size: 15px;
+    transition: all .3s ease-in-out;
+    &:hover{
+        color: white;
+        background-color: #007BFF;
+    }
+}
+
+/* estilos de erros para los inputs de tipo radio  */
+.error-radio{
+    color: red;
+    margin-left: 10px;
+    font-weight: bold;
+    display: none;
+}
+
+/* estilos del progres bar  */
+.progress-bar {
+    background-color: #0004ff; /* Color de fondo de la barra de progreso (verde) */
+}
+/* Estilos para el fondo de la barra de progreso */
+.progress {
+    background-color: #7d7d7d; /* Color de fondo de la barra (gris claro) */
+}

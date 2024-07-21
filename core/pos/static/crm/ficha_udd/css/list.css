@@ -1,0 +1,19 @@
+.btn-list-fichas{
+    border: 1px solid #007BFF;
+    padding: 2px;
+    border-radius: 3px;
+    color: #007BFF;
+    font-size: 15px;
+    transition: all .3s ease-in-out;
+    &:hover{
+        color: white;
+        background-color: #007BFF;
+    }
+}
+.progress-bar {
+    background-color: #007bff; /* Color de fondo de la barra de progreso (verde) */
+}
+/* Estilos para el fondo de la barra de progreso */
+.progress {
+    background-color: #7d7d7d; /* Color de fondo de la barra (gris claro) */
+}

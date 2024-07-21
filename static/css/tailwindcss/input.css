@@ -1,0 +1,38 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 
+.collapse {
+    display: none;
+} */
+/* @font-face {
+    font-family: Gotham-Ultra;
+    src: url(../../fonts/Gotham-Ultra.18c299f09a03264a.otf)
+}
+
+@font-face {
+    font-family: Gotham-Black;
+    src: url(../../fonts/Gotham-Black.bdb1a4f884d063f7.otf)
+} */
+
+/* @font-face {
+    font-family: Gotham-Black-Regular;
+    src: url(../../fonts/Gotham-Black-Regular.123ca905d4a4af87.ttf)
+} */
+
+@font-face {
+    font-family: Gotham-Bold;
+    src: url(../../fonts/Gotham-Bold.5306f5d5e8e4dede.otf)
+}
+
+/* @font-face {
+    font-family: Gotham-Medium;
+    src: url(../../fonts/Gotham-Medium.026843f928f424a3.otf)
+} */
+
+@font-face {
+    font-family: Gotham-Book;
+    src: url(../../fonts/Gotham-Book.477f1222752d7d14.ttf)
+}
+

@@ -111,8 +111,6 @@ dmypy.json
 # Media folder
 media/
 
-# Static files
-static/
 
 # Excluir migraciones
 */migrations/

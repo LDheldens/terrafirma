@@ -1,0 +1,8 @@
+.asterisk-icon::before {
+    display: inline-block;
+    margin-right: 4px;
+    color: #ff4d4f;
+    content: '*';
+    line-height: 1;
+    font-size: 14px;
+}

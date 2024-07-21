@@ -1,0 +1,13 @@
+.list-element{
+    list-style: none;
+    padding: 5px 7px;
+    border-radius: 10px;
+    border-bottom: solid 1px skyblue;
+    transition: background-color .3s ease-in-out;
+    cursor: pointer;
+    text-align: center;
+    &:hover{
+        background-color: skyblue;
+
+    }
+}
