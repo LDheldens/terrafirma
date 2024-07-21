@@ -114,3 +114,5 @@ media/
 # Static files
 static/
 
+# Excluir migraciones
+*/migrations/
