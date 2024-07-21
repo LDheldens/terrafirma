@@ -1,0 +1,1045 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="{% static 'css/tailwindcss/output.css' %}" rel="stylesheet"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{% static 'css/tailwindcss/conaford.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e00c278a93.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <!-- html -->
+    <div id="main">
+        <!-- navbar -->
+        <nav class="bg-[#007BFF] w-full">
+            <div class="mx-auto p-4 max-w-7xl flex">
+
+                <div class="flex gap-4 justify-center items-center">
+                    <a href="/dashboard/" class="flex justify-center gap-1 items-center">
+                        <img src="{% static 'img/default/empty.png' %}" alt="AdminLTE Logo" class="brand-image"
+                            style="opacity: .8" width="33">
+                        <span class="text-base text-white">Polariss</span>
+                    </a>
+                    <div class="relative">
+                        <!-- button -->
+                        <button
+                            class="flex items-center justify-between w-full py-2 px-3 text-white md:hover:bg-transparent md:border-0 md:p-0 md:w-auto"
+                            id="dropdownNavbarLink"><span class="fas fa-folder-open mr-1"></span>Modulos</button>
+                        <!-- Dropdown menu -->
+                        <div class="absolute z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+                            id="dropdownNavbar">
+                            <ul class="py-2 text-sm text-gray-700">
+                                <!-- <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                        </li> -->
+                                <!-- Dropdown menu -->
+                                <li class="relative group">
+                                    <button type="button" class="flex items-center justify-between w-full px-4 py-2 ">
+                                        <i class="fas fa-hand-holding-usd"></i>
+                                        Administrativo<svg class="w-2.5 h-2.5 ms-2.5" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4"></path>
+                                        </svg>
+                                    </button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-funnel-dollar"></i> Cuentas por cobrar</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-boxes"></i>Consultoría<svg class="w-2.5 h-2.5 ms-2.5"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg></button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-truck-loading"></i> Categorías</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-box"></i> Productos</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-calculator"></i>Facturación<svg class="w-2.5 h-2.5 ms-2.5"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg></button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-user-friends"></i> Clientes</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-shopping-cart"></i> Ventas</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-chart-pie"></i>Reportes<svg class="w-2.5 h-2.5 ms-2.5"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg></button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-chart-bar"></i>Cuentas por
+                                                    cobrar</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-chart-bar"></i>Ventas</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-lock"></i>Seguridad<svg class="w-2.5 h-2.5 ms-2.5"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg></button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-user-secret"></i> Accesos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-tools"></i> Conf.
+                                                    Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-users"></i> Grupos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-th-large"></i> Modulos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-database"></i> Respaldos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-door-open"></i> Tipos de
+                                                    Módulos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-user"></i> Usuarios</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-key"></i>
+                                        Cambiar password</a>
+                                </li>
+                                <li class="relative group">
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-building"></i> Compañia</a>
+                                </li>
+                                <li class="relative group">
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-user"></i>
+                                        Editar perfil</a>
+                                </li>
+                            </ul>
+                            <!-- <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                    </div> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- button burger -->
+                <button
+                    class="hidden order-1 px-3 py-2 text-gray-400 border border-gray-400 rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+                    type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <!-- last -->
+                <ul class="order-1 md:order-3 flex flex-row items-center ml-auto space-x-4 text-white">
+                    <li class="nav-item">
+                        <a class="nav-link infobyip" rel="infobyip" title="" data-toggle="tooltip"
+                            data-placement="bottom" data-html="true"
+                            data-original-title="Ubicación: Lima, LMA, Peru<br>Proveedor: TDP-GRS<br>País:PE">
+                            190.236.6.31
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-user"></i> Administrador
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login/logout">
+                            <i class="fas fa-power-off"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- header -->
+        <div class="mx-auto p-4 max-w-7xl flex items-center">
+            <a href="/dashboard/" class="mr-2">
+                <i class="fas fa-home"></i> Panel
+            </a>
+            <span class="mx-2">/</span>
+            <a href="/pos/crm/ficha/" class="text-blue-500">
+                <i class="fas fa-user-friends"></i> Ficha de identificacion preliminar
+            </a>
+        </div>
+
+        <form method="post" id="form_ficha_udd" enctype="multipart/form-data">    
+            <!-- main -->
+            <div class="md:container md:mx-auto bg-[#EAEBEB] w-full p-4 mb-4">
+                <!-- multi-step -->
+                <ol id="multi-step"
+                    class="flex justify-start sm:justify-center items-center sm:items-center flex-col sm:flex-row gap-4 mb-2 p-4">
+                    <li class="flex items-center text-blue-600 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                        <span
+                            class="flex items-center justify-center w-8 h-8 border-2 border-blue-600 rounded-full shrink-0">
+                            1
+                        </span>
+                        <h3 class="font-medium leading-tight">Paso 1</h3>
+                    </li>
+                    <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                        <span
+                            class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                            2
+                        </span>
+                        <h3 class="font-medium leading-tight">Paso 2</h3>
+                    </li>
+                    <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                        <span
+                            class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                            3
+                        </span>
+                        <h3 class="font-medium leading-tight">Paso 3</h3>
+                    </li>
+                    <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                        <span
+                            class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                            4
+                        </span>
+                        <h3 class="font-medium leading-tight">Paso 4</h3>
+                    </li>
+                </ol>
+                <header>
+                    <!-- title -->
+                    <h1 class="font-bold text-center text-2xl mb-4 font-gotham-bold">
+                        ACTUALIZAR FICHA DE IDENTIFICACIÓN PRELIMINAR(FiPre)
+                    </h1>
+                    <!-- linea -->
+                    <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-emerald-200">
+                        <div style="width: 10%"
+                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
+                        </div>
+                        <div style="width: 15%"
+                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500">
+                        </div>
+                        <div style="width: 25%"
+                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500">
+                        </div>
+                    </div>
+                </header>
+                <!-- 1.- DATOS DE LA POSESIÓN INFORMAL -->
+                <div class="hidden mb-2" id="part1">
+                    <!-- Fecha, Cel. Wssp. -->
+                    <div class="flex flex-col gap-x-2 sm:flex-row mb-4">
+                        <!-- Fecha -->
+                        <div class="flex-1">
+                            <label for="fecha"
+                                class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Fecha:</label>
+                            <!-- <input type="text" id="fecha" name="fecha"
+                        placeholder="dd/mm/aaaa"
+                        class="w-full mt-1 px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"> -->
+                            <input type="date" id="fecha" name="fecha" class="w-full px-4 mt-1 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]
+                        " value="{{ ficha_udd.fecha }}">
+                        </div>
+                        <!-- Cel. Wssp -->
+                        <div class="flex-1">
+                            <label for="codigo"
+                                class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Codigo</label>
+                            <input type="text" id="codigo" name="codigo"
+                                class="w-full mt-1 px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                placeholder="Codigo" value="{{ ficha_udd.codigo }}">
+                        </div>
+                    </div>
+                    <h1 class="font-bold mb-2 font-gotham-bold">1.- DATOS DE LA POSESIÓN INFORMAL</h1>
+                    <!-- Departamento, Provincia, Distrito -->
+                    <div class="flex flex-col gap-x-2 sm:flex-row mb-2">
+                        <!-- Departamento -->
+                        <div class="flex-1 relative">
+                            <label for="departamento"
+                                class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Departamento</label>
+                            <input 
+                                type="text" 
+                                id="departamento" 
+                                name="departamento"
+                                class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                placeholder="Departamento"
+                                value="{{ ficha_udd.departamento }}"
+                                >
+                            <!-- Departamento -> muestra resultados de busqueda en el autocompletado -->
+                            <ul
+                                class="absolute z-40 lista-resultados bg-white border border-[#A7CF42] rounded w-full hidden overflow-y-auto">
+                            </ul>
+                        </div>
+                        <!-- Provincia -->
+                        <div class="flex-1 relative">
+                            <label for="provincia"
+                                class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Provincia</label>
+                            <input type="text" 
+                                id="provincia" name="provincia"
+                                class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                placeholder="Provincia"
+                                value="{{ ficha_udd.provincia }}"
+                                >
+                            <!-- Provincia -> muestra resultados de busqueda en el autocompletado -->
+                            <ul
+                                class="absolute z-40 lista-resultados2 bg-white border border-[#A7CF42] rounded w-full hidden overflow-y-auto">
+                            </ul>
+                        </div>
+                        <!-- Distrito -->
+                        <div class="flex-1 relative">
+                            <label for="distrito"
+                                class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Distrito</label>
+                            <input 
+                                type="text" 
+                                id="distrito" 
+                                name="distrito"
+                                class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                placeholder="Distrito"
+                                value="{{ ficha_udd.distrito }}"
+                                >
+                            <!-- Distrito -> muestra resultados de busqueda en el autocompletado -->
+                            <ul
+                                class="absolute z-40 lista-resultados3 bg-white border border-[#A7CF42] rounded w-full hidden overflow-y-auto">
+                            </ul>
+                        </div>
+                        <!-- WGS-84 -->
+                        <div class="flex-1 relative">
+                            <h2 class="font-bold mb-1 font-gotham-bold asterisk-icon">WGS-84</h2>
+                            <div class="flex flex-col gap-2 sm:flex-row mb-2">
+                                <!-- X -->
+                                <div class="flex-1 flex items-center gap-2">
+                                    <label for="wgs-x84-x"
+                                        class="text-sm font-medium text-gray-700 font-gotham-bold">X</label>
+                                    <input type="text" id="wgs-x84-x" name="wgs-x84-x"
+                                        class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                        placeholder="X"
+                                        value="{{ ficha_udd.coordenada_x }}"
+                                        >
+                                        
+                                </div>
+                                <!-- Y -->
+                                <p>iojoijoijoijoijio;j nmoij m</p>
+                                <div class="flex-1 flex items-center gap-2">
+                                    <label for="wgs-x84-y"
+                                        class="text-sm font-medium text-gray-700 font-gotham-bold">Y</label>
+                                    <input type="text" id="wgs-x84-y" name="wgs-x84-y"
+                                        class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                        placeholder="Y"
+                                        value="{{ ficha_udd.coordenada_y }}"
+                                        {# value="{{ ficha_udd.coordenada_y|floatformat:"0" }}" #}
+                                        >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tipo de posesión informal-->
+                    <div class="mb-2">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Tipo de posesión informal predio</h2>
+                        <ul class="mt-1 text-sm font-medium text-gray-700 sm:flex divide-x divide-y divide-gray-100">
+                            <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                <input id="tipo-posesion-informal-Centro-poblado" type="radio" value="Centro poblado" name="list-radio-tipo-posesion-informal" class="w-4 h-4"
+                                {% if ficha_udd.tipo_posecion_informal == 'Centro poblado' %}checked{% endif %}
+                                >
+                                <label for="tipo-posesion-informal-Centro-poblado" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Centro poblado</label>
+                            </li>
+                            <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                <input id="tipo-posesion-informal-Asentamiento-Humano" type="radio" value="Asentamiento Humano" name="list-radio-tipo-posesion-informal" class="w-4 h-4"
+                                {% if ficha_udd.tipo_posecion_informal == 'Asentamiento Humano' %}checked{% endif %}
+                                >
+                                <label for="tipo-posesion-informal-Asentamiento-Humano" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Asentamiento Humano</label>
+                            </li>
+                            <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                <input id="tipo-posesion-informal-Otros" type="radio" value="Otros(CUI, UU, PP, PI)" name="list-radio-tipo-posesion-informal" class="w-4 h-4"
+                                {% if ficha_udd.tipo_posecion_informal == 'Otros(CUI, UU, PP, PI)' %}checked{% endif %}
+                                >
+                                <label for="tipo-posesion-informal-Otros" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Otros(CUI, UU, PP, PI)</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Denominacion según INEI -->
+                    <div class="sm:w-[30%] w-full">
+                        <label for="denominacion-inei" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Denominacion según INEI</label>
+                        <input type="text" id="denominacion-inei" name="denominacion-inei" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Denominacion según INEI" value="{{ ficha_udd.denominacion_segun_inei }}">
+                    </div>
+                </div>
+                <!-- 2.- FORMA DE ASENTAMIENTO -->
+                <div class="hidden" id="part2">
+                    <h1 class="font-bold mb-4 font-gotham-bold">2.- FORMA DE ASENTAMIENTO</h1>
+                    <div class="flex flex-col gap-x-2 sm:flex-row mb-4">
+                        <div class="flex-1">
+                            <label for="tipo-matriz" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Tipo de matriz</label>
+                            <!-- appearance-none  -->
+                            <select id="tipo-matriz" name="tipo-matriz" class="w-full border-2 border-gray-950 px-4 py-2 pr-8 rounded shadow-sm leading-tight focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]">
+                                <option value="" {% if ficha_udd.tipo_matriz == '' %}selected{% endif %}>Opción</option>
+                                <option value="Predio Comunal" {% if ficha_udd.tipo_matriz == 'Predio Comunal' %}selected{% endif %}>Predio Comunal</option>
+                                <option value="Predio Estatal" {% if ficha_udd.tipo_matriz == 'Predio Estatal' %}selected{% endif %}>Predio Estatal</option>
+                                <option value="Predio Privado" {% if ficha_udd.tipo_matriz == 'Predio Privado' %}selected{% endif %}>Predio Privado</option>
+                            </select>
+                        </div>
+                        <div class="flex-1">
+                            <label for="contexto-legal" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Contexto legal</label>
+                            <!-- appearance-none  -->
+                            <select id="contexto-legal" name="contexto-legal" class="w-full border-2 border-gray-950 px-4 py-2 pr-8 rounded shadow-sm leading-tight focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]">
+                                <option value="" {% if ficha_udd.contexto_legal == '' %}selected{% endif %}>Opcion</option>
+                                <option value="Antes 31.12.03 - Ley N°24657" {% if ficha_udd.contexto_legal == 'Antes 31.12.03 - Ley N°24657' %}selected{% endif %}>Antes 31.12.03 - Ley N°24657</option>
+                                <option value="Antes 31.12.04 - Ley N°28687" {% if ficha_udd.contexto_legal == 'Antes 31.12.04 - Ley N°28687' %}selected{% endif %}>Antes 31.12.04 - Ley N°28687</option>
+                                <option value="Del 01.01.05 al 31.12.15 - Ley N° 31056" {% if ficha_udd.contexto_legal == 'Del 01.01.05 al 31.12.15 - Ley N° 31056' %}selected{% endif %}>Del 01.01.05 al 31.12.15 - Ley N° 31056</option>
+                            </select>
+                        </div>
+                        <div class="flex-1">
+                            <label for="acciones-formalizacion" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Acciones de formalización</label>
+                            <!-- appearance-none  -->
+                            <select id="acciones-formalizacion" name="acciones-formalizacion" class="w-full border-2 border-gray-950 px-4 py-2 pr-8 rounded shadow-sm leading-tight focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]">
+                                <option value="" {% if ficha_udd.aciones_de_formalizacion == '' %}selected{% endif %}>Opción</option>
+                                <option value="Inmatriculación" {% if ficha_udd.aciones_de_formalizacion == 'Inmatriculación' %}selected{% endif %}>Inmatriculación</option>
+                                <option value="Independizacion" {% if ficha_udd.aciones_de_formalizacion == 'Independizacion' %}selected{% endif %}>Independizacion</option>
+                                <option value="Desmembramiento" {% if ficha_udd.aciones_de_formalizacion == 'Desmembramiento' %}selected{% endif %}>Desmembramiento</option>
+                                <option value="Acumulación" {% if ficha_udd.aciones_de_formalizacion == 'Acumulación' %}selected{% endif %}>Acumulación</option>
+                                <option value="Correlación" {% if ficha_udd.aciones_de_formalizacion == 'Correlación' %}selected{% endif %}>Correlación</option>
+                                <option value="Cierre" {% if ficha_udd.aciones_de_formalizacion == 'Cierre' %}selected{% endif %}>Cierre</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3.- ACCESIBILIDAD -->
+                <div class="hidden" id="part3">
+                    <h1 class="font-bold mb-4 font-gotham-bold">3.- ACCESIBILIDAD</h1>
+                    <div class="flex flex-col gap-x-2 sm:flex-row mb-2">
+                        <!-- Tipo de calzada -->
+                        <div class="flex-1">
+                            <label for="tipo-calzada" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Tipo de calzada</label>
+                            <input type="text" id="tipo-calzada" name="tipo-calzada" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Tipo de calzada" value="{{ ficha_udd.tipo_calzada }}">
+                        </div>
+                        <!-- Referencia (Local) -->
+                        <div class="flex-1">
+                            <label for="referencia-local" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Referencia local</label>
+                            <input type="text" id="referencia-local" name="referencia-local" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Referencia local" value="{{ ficha_udd.referencia_local }}">
+                        </div>
+                        <!-- Rutas -->
+                        <div class="flex-1">
+                            <label for="rutas" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Rutas</label>
+                            <select id="rutas" name="rutas" class="w-full border-2 border-gray-950 px-4 py-2 pr-8 rounded shadow-sm leading-tight focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]">
+                                <option value="" {% if ficha_udd.ruta == '' %}selected{% endif %}>Opción</option>
+                                <option value="Terrestre" {% if ficha_udd.ruta == 'Terrestre' %}selected{% endif %}>Terrestre</option>
+                                <option value="Aéreo" {% if ficha_udd.ruta == 'Aéreo' %}selected{% endif %}>Aéreo</option>
+                                <option value="Fluvial" {% if ficha_udd.ruta == 'Fluvial' %}selected{% endif %}>Fluvial</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-x-2 sm:flex-row mb-2">
+                        <!-- Distancia -->
+                        <div class="flex-1">
+                            <label for="distancia" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Distancia</label>
+                            <div class="mt-1 w-full flex items-center gap-2">
+                                <input type="text" id="distancia" name="distancia" class="flex-1 px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Distancia" value="{{ ficha_udd.tipo_calzada_distancia }}">
+                                <span class="font-bold w-fit">KM</span>
+                            </div>
+                        </div>
+                        <!-- Tiempo -->
+                        <div class="flex-1">
+                            <label for="tiempo" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Tiempo</label>
+                            <input type="time" id="tiempo" name="tiempo" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Tiempo" value="{{ ficha_udd.referencia_local_tiempo }}">
+                        </div>
+                        <!-- Especificar -->
+                        <div class="flex-1">
+                            <label for="especificar" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Especificar</label>
+                            <input type="text" id="especificar" name="especificar" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Especificar" value="{{ ficha_udd.ruta_especifica}}">
+                        </div>
+                    </div>
+                </div>
+                <!-- 4.- CONFIGURACION URBANA -->
+                <div class="hidden" id="part4">
+                    <h1 class="font-bold text-sm mb-2 font-gotham-bold">4.- CONFIGURACIÓN URBANA</h1>
+                    <!-- Tipo de configuracion urbana -->
+                    <div class="mb-2">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Tipo de configuracion urbana</h2>
+                        <ul class="mt-1 text-sm font-medium text-gray-700 sm:flex divide-x divide-y divide-gray-100">
+                            <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                <input id="tipo-configuracion-urbana-continua" type="radio" value="Continua" name="list-radio-tipo-configuracion-urbana" class="w-4 h-4"
+                                {% if ficha_udd.tipo_configuracion_urbana == 'Continua' %}checked{% endif %}
+                                >
+                                <label for="tipo-configuracion-urbana-continua" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Continua</label>
+                            </li>
+                            <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                <input id="tipo-configuracion-dispersa" type="radio" value="Dispersa" name="list-radio-tipo-configuracion-urbana" class="w-4 h-4"
+                                {% if ficha_udd.tipo_configuracion_urbana == 'Dispersa' %}checked{% endif %}
+                                >
+                                <label for="tipo-configuracion-dispersa" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Dispersa</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-x-2 sm:flex-row mb-2">
+                        <!-- N° de lotes -->
+                        <div class="flex-1">
+                        <label for="numero-lotes" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">N° de lotes</label>
+                        <input type="text" id="numero-lotes" name="numero-lotes" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="N° de lotes" value="{{ ficha_udd.numero_lotes }}">
+                        </div>
+                        <!-- N° de manzanos -->
+                        <div class="flex-1">
+                        <label for="numero-manzanas" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">N° de manzanas</label>
+                        <input type="text" id="numero-manzanas" name="numero-manzanas" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="N° de manzanas" value="{{ ficha_udd.numero_manzanas }}">
+                        </div>
+                        <!-- Vivencia -->
+                        <div class="flex-1">
+                        <label for="porcentaje-vivencia" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Vivencia %</label>
+                        <input id="porcentaje-vivencia" name="porcentaje-vivencia" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Vivencia %" type="text" value="{{ ficha_udd.porcentaje_vivencia }}">
+                        </div>
+                    </div>
+
+                    <div class="flex sm:flex-row flex-col justify-between gap-4">
+                        <!-- Equipamientos -->
+                        <div>
+                            <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Equipamientos</h2>
+                            <ul class="mt-1 text-sm font-medium text-gray-700 divide-x divide-y divide-gray-100">
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="equipamientos-Salud" type="checkbox" value="Salud" name="list-checkbox-equipamientos" class="w-4 h-4">
+                                        <label for="equipamientos-Salud" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Salud:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="equipamientos-Salud-cantidad" type="text" name="list-input-equipamientos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="equipamientos-Educación" type="checkbox" value="Educación" name="list-checkbox-equipamientos" class="w-4 h-4">
+                                        <label for="equipamientos-Educación" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Educación:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="equipamientos-Educación-cantidad" type="text" name="list-input-equipamientos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="equipamientos-Recreación" type="checkbox" value="Recreación" name="list-checkbox-equipamientos" class="w-4 h-4">
+                                        <label for="equipamientos-Recreación" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Recreación:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="equipamientos-Recreación-cantidad" type="text" name="list-input-equipamientos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="equipamientos-Iglesia" type="checkbox" value="Iglesia" name="list-checkbox-equipamientos" class="w-4 h-4">
+                                        <label for="equipamientos-Iglesia" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Iglesia:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="equipamientos-Iglesia-cantidad" type="text" name="list-input-equipamientos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li> 
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="equipamientos-Otros" type="checkbox" value="Otros" name="list-checkbox-equipamientos" class="w-4 h-4">
+                                        <label for="equipamientos-Otros" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Otros:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input type="text" id="equipamientos-Otros-value" class="w-full sm:w-[80px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Especificar">
+                                        <input id="equipamientos-Otros-cantidad" type="text" name="list-input-equipamientos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex justify-start items-center gap-x-2 px-2 py-4">
+                                    <span class="shrink-0 bg-black p-3 font-mono font-bold tracking-tight text-white">
+                                        Total: <span id="equipamientos-total">0</span>
+                                    </span>
+                                    <!-- <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono text-md font-medium tracking-tight text-white">0%</span> -->
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- {{ ficha_udd.equipamientos }}
+                        {{ ficha_udd.material_predominante }}
+                        {{ ficha_udd.servicios_basicos }} -->
+                        <!-- Material predominante -->
+                        <div>
+                            <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Material predominante</h2>
+                            <ul class="mt-1 text-sm font-medium text-gray-700 divide-x divide-y divide-gray-100">
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="material-predominante-Ladrillo" type="checkbox" value="Ladrillo" name="list-checkbox-material-predominante" class="w-4 h-4"
+                                        >
+                                        <label for="material-predominante-Ladrillo" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Ladrillo:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="material-predominante-Ladrillo-cantidad" type="text" name="list-input-material-predominante-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="material-predominante-Adobe" type="checkbox" value="Adobe" name="list-checkbox-material-predominante" class="w-4 h-4">
+                                        <label for="material-predominante-Adobe" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Adobe:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="material-predominante-Adobe-cantidad" type="text" name="list-input-material-predominante-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="material-predominante-Tapia" type="checkbox" value="Tapia" name="list-checkbox-material-predominante" class="w-4 h-4">
+                                        <label for="material-predominante-Tapia" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Tapia:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="material-predominante-Tapia-cantidad" type="text" name="list-input-material-predominante-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="material-predominante-Madera" type="checkbox" value="Madera" name="list-checkbox-material-predominante" class="w-4 h-4">
+                                        <label for="material-predominante-Madera" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Madera:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="material-predominante-Madera-cantidad" type="text" name="list-input-material-predominante-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li> 
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-24 w-[25%]">
+                                        <input id="material-predominante-Otros" type="checkbox" value="Otros" name="list-checkbox-material-predominante" class="w-4 h-4">
+                                        <label for="material-predominante-Otros" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Otros:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input type="text" id="material-predominante-Otros-value" class="w-full sm:w-[80px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Especificar">
+                                        <input id="material-predominante-Otros-cantidad" type="text" name="list-input-material-predominante-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad"/>
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex justify-start items-center gap-x-2 px-2 py-4">
+                                    <span class="shrink-0 bg-black p-3 font-mono font-bold tracking-tight text-white">
+                                        Total: <span id="material-predominante-total">0</span>
+                                    </span>
+                                    <!-- <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono text-md font-medium tracking-tight text-white">0%</span> -->
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Servicios basicos -->
+                        <div>
+                            <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Servicios basicos</h2>
+                            <ul class="mt-1 text-sm font-medium text-gray-700 divide-x divide-y divide-gray-100">
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-56 w-[25%]">
+                                        <input id="servicios-basicos-Agua-potable" type="checkbox" value="Agua potable" name="list-checkbox-servicios-basicos" class="w-4 h-4">
+                                        <label for="servicios-basicos-Agua-potable" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Agua potable:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="servicios-basicos-Agua-potable-cantidad" type="text" name="list-input-servicios-basicos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad">
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-56 w-[25%]">
+                                        <input id="servicios-basicos-Desagüe" type="checkbox" value="Desagüe" name="list-checkbox-servicios-basicos" class="w-4 h-4">
+                                        <label for="servicios-basicos-Desagüe" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Desagüe:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="servicios-basicos-Desagüe-cantidad" type="text" name="list-input-servicios-basicos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad">
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-56 w-[25%]">
+                                        <input id="servicios-basicos-Energía-electrica-pública" type="checkbox" value="Energía electrica pública" name="list-checkbox-servicios-basicos" class="w-4 h-4">
+                                        <label for="servicios-basicos-Energía-electrica-pública" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Energía electrica pública:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="servicios-basicos-Energía-electrica-pública-cantidad" type="text" name="list-input-servicios-basicos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad">
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-56 w-[25%]">
+                                        <input id="servicios-basicos-Energía-electrica-domiciliaria" type="checkbox" value="Energía electrica domiciliaria" name="list-checkbox-servicios-basicos" class="w-4 h-4">
+                                        <label for="servicios-basicos-Energía-electrica-domiciliaria" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Energía electrica domiciliaria:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="servicios-basicos-Energía-electrica-domiciliaria-cantidad" type="text" name="list-input-servicios-basicos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad">
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-56 w-[25%]">
+                                        <input id="servicios-basicos-Pistas" type="checkbox" value="Pistas" name="list-checkbox-servicios-basicos" class="w-4 h-4">
+                                        <label for="servicios-basicos-Pistas" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Pistas:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="servicios-basicos-Pistas-cantidad" type="text" name="list-input-servicios-basicos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad">
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-56 w-[25%]">
+                                        <input id="servicios-basicos-Veredas" type="checkbox" value="Veredas" name="list-checkbox-servicios-basicos" class="w-4 h-4">
+                                        <label for="servicios-basicos-Veredas" class="font-gotham-bold font-medium text-gray-100 cursor-pointer hover:text-gray-300">Veredas:</label>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2">
+                                        <input id="servicios-basicos-Veredas-cantidad" type="text" name="list-input-servicios-basicos-cantidad" class="w-full sm:w-[70px] p-1 border-2 text-gray-700 shadow-sm focus:outline-none text-center" placeholder="Cantidad">
+                                        <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono font-medium tracking-tight text-white">0.00%</span>
+                                    </div>
+                                </li>
+                                <!-- <li class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4">
+                                    <div class="flex items-center gap-2 sm:w-56 w-[25%]">
+                                        <input id="material-predominante-No-tiene-servicios" type="checkbox" value="Madera" name="list-checkbox-servicios-basicos" class="w-4 h-4">
+                                        <label for="material-predominante-No-tiene-servicios" class="font-gotham-bold font-medium text-black cursor-pointer hover:text-gray-300">No tiene servicios</label>
+                                    </div>
+                                </li> -->
+                                <li class="bg-[#acacac] flex justify-start items-center gap-x-2 px-2 py-4">
+                                    <span class="shrink-0 bg-black p-3 font-mono font-bold tracking-tight text-white">
+                                        Total: <span id="servicios-basicos-total">0</span>
+                                    </span>
+                                    <!-- <span name="list-input-porcentaje" class="shrink-0 rounded-full bg-emerald-500 px-3 font-mono text-md font-medium tracking-tight text-white">0%</span> -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 5.- ZONIFICACION MUNICIPAL -->
+                <div class="hidden mb-2" id="part5">
+                    <div class="flex items-center gap-4">
+                        <h1 class="font-bold text-sm font-gotham-bold">5.- ZONIFICACION MUNICIPAL:</h1>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="zonificacion-municipal-si" type="radio" value="si" name="list-radio-zonificacion-municipal" class="w-4 h-4" {% if ficha_udd.zonificacion_municipal %}checked{% endif %}>
+                                <label for="zonificacion-municipal-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="zonificacion-municipal-no" type="radio" value="no" name="list-radio-zonificacion-municipal" class="w-4 h-4" {% if not ficha_udd.zonificacion_municipal %}checked{% endif %}>
+                                <label for="zonificacion-municipal-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 6.- ÁREAS RESTRINGIDAS Y/O FORMAS DE DOMINIO -->
+                <div class="hidden mb-2" id="part6">
+                    <h1 class="font-bold text-sm font-gotham-bold mb-2">6.- ÁREAS RESTRINGIDAS Y/O FORMAS DE DOMINIO</h1>
+                    <!-- Zonas reservadas -->
+                    <div class="mb-4 bg-[#d3d3d3] rounded-md p-4">
+                        <label for="zonas-reservadas" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold block mb-2">Zonas reservadas:</label>
+                        <input type="text" id="zonas-reservadas" name="zonas-reservadas" class="sm:w-[25%] w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Zonas reservadas" value="{{ ficha_udd.zonas_reservadas }}">
+                    </div>
+                    <!-- Zonas Arqueológicas o Reservas Naturales -->
+                    <div class="mb-4 bg-[#d3d3d3] rounded-md p-4">
+                        <div class="flex gap-2 mb-2">
+                            <label for="zonas-arqueologica-o-reservas-naturales" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Zonas Arqueológicas o Reservas Naturales:</label>
+                            <div class="flex gap-x-1">
+                                <div class="flex items-center gap-x-1">
+                                    <input id="zonas-arqueologica-o-reservas-naturales-si" type="radio" value="si" name="list-radio-zonas-arqueologica-o-reservas-naturales" class="w-4 h-4" {% if ficha_udd.zonas_arquelogicas_o_reservas %}checked{% endif %}>
+                                    <label for="zonas-arqueologica-o-reservas-naturales-si" class="font-gotham-bold text-sm">SI</label>
+                                </div>
+                                <div class="flex items-center gap-x-1">
+                                    <input id="zonas-arqueologica-o-reservas-naturales-no" type="radio" value="no"  name="list-radio-zonas-arqueologica-o-reservas-naturales" class="w-4 h-4" {% if not ficha_udd.zonas_arquelogicas_o_reservas %}checked{% endif %}>
+                                    <label for="zonas-arqueologica-o-reservas-naturales-no" class="font-gotham-bold text-sm">NO</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div  id="container-zonas-arqueologica-o-reservas-naturales" class="{% if not ficha_udd.zonas_arquelogicas_o_reservas %}hidden{% endif %}">
+                            <input type="text" id="zonas-arqueologica-o-reservas-naturales" name="zonas-arqueologica-o-reservas-naturales" class="sm:w-[30%] w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Zonas Arqueológicas o Reservas Naturales" value="{{ ficha_udd.zonas_a_o_r_nombre }}">
+                            <!-- <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Ubicación</h2> -->
+                            <ul class="mt-2 text-sm font-medium text-gray-700 flex sm:flex-row flex-col divide-x divide-y divide-gray-100 mb-2">
+                                <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                    <input id="zonas-arqueologicas-o-reservas-naturales-ubicacion-Fuera" type="radio" value="Fuera" name="list-radio-zonas-arqueologicas-o-reservas-naturales-ubicacion" class="w-4 h-4" {% if ficha_udd.zonas_a_o_r_ubicacion == 'Fuera' %}checked{% endif %}>
+                                    <label for="zonas-arqueologicas-o-reservas-naturales-ubicacion-Fuera" class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Fuera</label>
+                                </li>
+                                <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                    <input id="zonas-arqueologicas-o-reservas-naturales-ubicacion-Colindante" type="radio" value="Colindante" name="list-radio-zonas-arqueologicas-o-reservas-naturales-ubicacion" class="w-4 h-4" {% if ficha_udd.zonas_a_o_r_ubicacion == 'Colindante' %}checked{% endif %}>
+                                    <label for="zonas-arqueologicas-o-reservas-naturales-ubicacion-Colindante" class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Colindante</label>
+                                </li>
+                                <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                    <input id="zonas-arqueologicas-o-reservas-naturales-ubicacion-Dentro" type="radio" value="Dentro" name="list-radio-zonas-arqueologicas-o-reservas-naturales-ubicacion" class="w-4 h-4" {% if ficha_udd.zonas_a_o_r_ubicacion == 'Dentro' %}checked{% endif %}>
+                                    <label for="zonas-arqueologicas-o-reservas-naturales-ubicacion-Dentro" class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Dentro</label>
+                                </li>
+                            </ul>
+                            <div class="bg-white rounded-md p-5 sm:w-[25%] w-full">
+                                <label for="zonas-arqueologicas-o-reservas-naturales-pdf" class="font-bold">Suba un pdf:</label>
+                                <input type="file" name="zonas-arqueologicas-o-reservas-naturales-pdf" id="zonas-arqueologicas-o-reservas-naturales-pdf" accept=".pdf">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Zonas de riesgo -->
+                    <div class="mb-4 bg-[#d3d3d3] rounded-md p-4">
+                        <div class="flex gap-2 mb-2">
+                            <label for="zonas-riesgo" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Zonas de riesgo:</label>
+                            <div class="flex gap-x-1">
+                                <div class="flex items-center gap-x-1">
+                                    <input id="zonas-riesgo-si" type="radio" value="si" name="list-radio-zonas-riesgo" class="w-4 h-4"
+                                    {% if ficha_udd.zonas_riesgo %}checked{% endif %}>
+                                    <label for="zonas-riesgo-si" class="font-gotham-bold text-sm">SI</label>
+                                </div>
+                                <div class="flex items-center gap-x-1">
+                                    <input id="zonas-riesgo-no" type="radio" value="no" name="list-radio-zonas-riesgo" class="w-4 h-4"
+                                    {% if not ficha_udd.zonas_riesgo %}checked{% endif %}>
+                                    <label for="zonas-riesgo-no" class="font-gotham-bold text-sm">NO</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="container-zonas-riesgo" class="{% if not ficha_udd.zonas_riesgo %}hidden{% endif %}">
+                            <input type="text" id="zonas-riesgo" name="zonas-riesgo" class="sm:w-[25%] w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Zonas Riesgo" value="{{ ficha_udd.zonas_riesgo_nombre }}">
+                            <!-- <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Ubicación</h2> -->
+                            <ul class="mt-2 text-sm font-medium text-gray-700 flex sm:flex-row flex-col divide-x divide-y divide-gray-100 mb-2">
+                               <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                  <input id="zonas-riesgo-ubicacion-Fuera" type="radio" value="Fuera" name="list-radio-zonas-riesgo-ubicacion" class="w-4 h-4" {% if ficha_udd.zonas_riesgo_ubicacion == 'Fuera' %}checked{% endif %}>
+                                  <label for="zonas-riesgo-ubicacion-Fuera" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Fuera</label>
+                               </li>
+                               <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                  <input id="zonas-riesgo-ubicacion-Colindante" type="radio" value="Colindante" name="list-radio-zonas-riesgo-ubicacion" class="w-4 h-4" {% if ficha_udd.zonas_riesgo_ubicacion == 'Colindante' %}checked{% endif %}>
+                                  <label for="zonas-riesgo-ubicacion-Colindante" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Colindante</label>
+                               </li>
+                               <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4">
+                                  <input id="zonas-riesgo-ubicacion-Dentro" type="radio" value="Dentro" name="list-radio-zonas-riesgo-ubicacion" class="w-4 h-4" {% if ficha_udd.zonas_riesgo_ubicacion == 'Dentro' %}checked{% endif %}>
+                                  <label for="zonas-riesgo-ubicacion-Dentro" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Dentro</label>
+                               </li>
+                            </ul>
+                            <div class="bg-white rounded-md p-5 sm:w-[25%] w-full">
+                                <label for="zonas-riesgo-pdf" class="font-bold">Suba un pdf:</label>
+                                <input type="file" name="zonas-riesgo-pdf" id="zonas-riesgo-pdf" accept=".pdf">
+                            </div>
+                         </div>
+                    </div>
+                     
+                    <!-- Concesiones mineras -->
+                    <div class="mb-4 bg-[#d3d3d3] rounded-md p-4">
+                        <label for="concesiones-mineras" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold block mb-2">Concesiones mineras:</label>
+                        <input type="text" id="concesiones-mineras" name="concesiones-mineras" class="sm:w-[25%] w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Concesiones mineras" value="{{ ficha_udd.conceciones_mineras }}">
+                     </div>
+                    <!-- Canales de regadío, postes y cables de media y alta tensión -->
+                    <div class="mb-4 bg-[#d3d3d3] rounded-md p-4">
+                        <label for="canales-de-regadio-postes-cables" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold block mb-2">Canales de regadío, postes y cables de media y alta tensión:</label>
+                        <input type="text" id="canales-de-regadio-postes-cables" name="canales-de-regadio-postes-cables" class="sm:w-[40%] w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Canales de regadío, postes y cables de media y alta tensión" value="{{ ficha_udd.canales_postes_cables }}">
+                     </div>
+                    <!-- Posibles propietarios de fundos, haciendas, parcelas, etc. -->
+                    <div class="mb-4 bg-[#d3d3d3] rounded-md p-4">
+                        <label for="propietarios-de-fundos-haciendas-parcelas-etc" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold block mb-2">Posibles propietarios de fundos, haciendas, parcelas, etc.:</label>
+                        <input type="text" id="propietarios-de-fundos-haciendas-parcelas-etc" name="propietarios-de-fundos-haciendas-parcelas-etc" class="sm:w-[40%] w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Posibles propietarios de fundos, haciendas, parcelas, etc." value="{{ ficha_udd.posibles_propietarios }}">
+                     </div>
+                    <!-- Otros -->
+                    <div class="mb-4 bg-[#d3d3d3] rounded-md p-4">
+                        <label for="otros" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold block mb-2">Otros:</label>
+                        <input type="text" id="otros" name="otros" class="sm:w-[25%] w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="otros" value="{{ ficha_udd.otros }}">
+                     </div>
+                </div>
+                <!-- 7.- CONFLICTOS DIRIGENCIALES -->
+                <div class="hidden mb-2 " id="part7">
+                    <div class="flex items-center gap-4 mb-2">
+                        <h2 class="font-bold text-sm font-gotham-bold">7.- CONFLICTOS DIRIGENCIALES:</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="conflictos-digerenciales-si" type="radio" value="si" name="list-radio-conflictos-digerenciales" class="w-4 h-4" {% if ficha_udd.conflictos_dirigenciales %}checked{% endif %}>
+                                <label for="conflictos-digerenciales-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="conflictos-digerenciales-no" type="radio" value="no" name="list-radio-conflictos-digerenciales" class="w-4 h-4" {% if not ficha_udd.conflictos_dirigenciales %}checked{% endif %}>
+                                <label for="conflictos-digerenciales-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div  id="container-conflictos-dirigenciales" class="{% if not ficha_udd.conflictos_dirigenciales %}hidden{% endif %}">
+                        <input type="text" id="conflictos-dirigenciales" name="conflictos-dirigenciales" class="sm:w-[25%] w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] mb-2" placeholder="Conflictos dirigenciales" value="{{ ficha_udd.conflictos_dirigenciales_nombre }}">
+                        <!-- <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Ubicación</h2> -->
+                        <div class="bg-white rounded-md p-5 sm:w-[25%] w-full">
+                            <label for="conflictos-dirigenciales-pdf" class="font-bold">Suba un pdf:</label>
+                            <input type="file" name="conflictos-dirigenciales-pdf" id="conflictos-dirigenciales-pdf" accept=".pdf">
+                        </div>
+                        <div class="mb-4 sm:w-[25%] w-full">
+                            <label for="conflictos-dirigenciales-comentarios" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Comentarios:</label>
+                            <textarea id="conflictos-dirigenciales-comentarios" name="conflictos-dirigenciales-comentarios" rows="4" class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2" placeholder="Comentarios">{{ ficha_udd.conflictos_dirigenciales_comentarios }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            <!-- 8.- CONFLICTOS JUDICIALES O ADMINISTRATIVO -->
+            <div class="hidden mb-2" id="part8">
+                    <h2 class="font-bold text-sm mb-2 font-gotham-bold">8.- CONFLICTOS JUDICIALES O ADMINISTRATIVOS</h2>
+                    <ul class="mt-1 text-sm font-medium text-gray-700 flex sm:flex-row flex-col divide-x divide-y divide-gray-100">
+                        <li class="bg-[#FFAF00] flex items-center gap-x-2 px-2 py-4">
+                            <input id="conflictos-judiciales-o-administrativo-si" type="radio" value="si" name="list-radio-conflictos-judiciales-o-administrativo" class="w-4 h-4"
+                            {% if ficha_udd.conflictos_judiciales %}checked{% endif %}
+                            >
+                            <label for="conflictos-judiciales-o-administrativo-si" class="font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Si</label>
+                        </li>
+                        <li class="bg-[#FFAF00] flex items-center gap-x-2 px-2 py-4">
+                            <input id="conflictos-judiciales-o-administrativo-no" type="radio" value="no" name="list-radio-conflictos-judiciales-o-administrativo" class="w-4 h-4"
+                            {% if not ficha_udd.conflictos_judiciales %}checked{% endif %}
+                            >
+                            <label for="conflictos-judiciales-o-administrativo-no" class="font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">No</label>
+                            <input type="text" id="conflictos-judiciales-o-administrativo-especificar" name="conflictos-judiciales-o-administrativo-especificar" class="flex-1 px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none" placeholder="Especificar" value="{{ ficha_udd.conflictos_judiciales_descripcion }}">
+                        </li>
+                    </ul>
+                </div>
+                <!-- 10.- IMAGEN SATELITAL DE LA POSESION INFORMAL -->
+                <div class="hidden mb-2" id="part9">
+                    <h2 class="font-bold text-sm mb-2 font-gotham-bold">9.- IMAGEN SATELITAL DE LA POSESION INFORMAL</h2>
+                    <div class="bg-white rounded-md p-5 sm:w-[25%] w-full">
+                        <label for="imagen-satelital-pdf" class="font-bold">Suba un pdf:</label>
+                        <input type="file" name="imagen-satelital-pdf" id="imagen-satelital-pdf" accept=".pdf">
+                    </div>
+                    <div class="mb-4">
+                        <label for="imagen-areas-restringidas-comentarios" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Comentarios:</label>
+                        <textarea id="imagen-areas-restringidas-comentarios" name="imagen-areas-restringidas-comentarios" rows="4" class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2" placeholder="Comentarios">{{ ficha_udd.comentarios_observaciones }}</textarea>
+                    </div>
+                </div>
+                <!-- next && prev -->
+                <div class="flex justify-start sm:justify-center gap-4 sm:end hidden">
+                    <!-- <div>
+                        <button type="button" class="mb-2 bg-[#8b0031] font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]"
+                        id="btn-cancelar-titular">
+                        <a href="/pos/crm/acta/"
+                        ><i class="fas fa-times"></i> Cancelar</a>
+                        </button>
+                    </div> -->
+
+                    <div>
+                        <button type="button"
+                        class="mb-2 bg-[#008B8B] font-gotham-bold p-2 rounded text-white hover:bg-[#519494]"
+                        id="prev-step">
+                        << Anterior</button>
+                        <button type="button"
+                            class="mb-2 bg-[#008B8B] font-gotham-bold p-2 rounded text-white hover:bg-[#519494]"
+                            id="next-step">Siguiente >></button>
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div class="mx-auto p-4 max-w-7xl flex gap-4 bg-[#EAEBEB] mb-4">
+                <a href="{{ list_url }} "
+                    class="mb-2 bg-[#8b0031] font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]"
+                    id="btn-cancelar"><i class="fas fa-times"></i> Cancelar</a>
+                <button type="submit" class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]"
+                    id="btn-update"><i class="fas fa-save"></i> Actualizar</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const action = '{{ action }}'
+    </script>
+    {% if action == 'update' %}
+    <script>
+        const equipamientos = {{ ficha_udd.equipamientos|safe }};
+        const material_predominante = {{ ficha_udd.material_predominante|safe }};
+        const servicios_basicos = {{ ficha_udd.servicios_basicos|safe }};
+        const setDataListCheckbox = () => {
+            const getPercent = (value, total) => {
+                const num = value * 100 / total;
+                // return num;
+                return (num || 0).toFixed(2);
+            };
+            equipamientos.map(value => {
+                const total = equipamientos.reduce((acc, curr) => acc+curr.quantity, 0);
+                const percent = getPercent(value.quantity, total);
+                if(value.name === 'Otros') {
+                    document.getElementById(`equipamientos-Otros-value`).value = value.valueOtros;
+                }
+
+                const name = value.name.split(' ').join('-');
+                const checkbox = document.getElementById(`equipamientos-${name}`);
+                checkbox.checked = true;
+                const inputCantidad = document.getElementById(`equipamientos-${name}-cantidad`);
+                const span = inputCantidad.nextElementSibling;
+                span.innerText = `${percent}%`;
+                inputCantidad.value = value.quantity;
+                document.getElementById('equipamientos-total').innerText = total;
+            });
+            material_predominante.map(value => {
+                const total = material_predominante.reduce((acc, curr) => acc+curr.quantity, 0);
+                const percent = getPercent(value.quantity, total);
+                if(value.name === 'Otros') {
+                    document.getElementById(`material-predominante-Otros-value`).value = value.valueOtros;
+                }
+
+                const name = value.name.split(' ').join('-');
+                const checkbox = document.getElementById(`material-predominante-${name}`);
+                checkbox.checked = true;
+                const inputCantidad = document.getElementById(`material-predominante-${name}-cantidad`);
+                const span = inputCantidad.nextElementSibling;
+                span.innerText = `${percent}%`;
+                inputCantidad.value = value.quantity
+                document.getElementById('material-predominante-total').innerText = total;
+            });
+            servicios_basicos.map(value => {
+                const total = servicios_basicos.reduce((acc, curr) => acc+curr.quantity, 0);
+                const percent = getPercent(value.quantity, total);
+
+                const name = value.name.split(' ').join('-');
+                const checkbox = document.getElementById(`servicios-basicos-${name}`);
+                checkbox.checked = true;
+                const inputCantidad = document.getElementById(`servicios-basicos-${name}-cantidad`);
+                const span = inputCantidad.nextElementSibling;
+                span.innerText = `${percent}%`;
+                inputCantidad.value = value.quantity
+                document.getElementById('servicios-basicos-total').innerText = total;
+            });
+        };
+        setDataListCheckbox();
+
+    </script>
+    {% endif %}
+    <script src="{% static 'crm/ficha_udd/js/navbar.js' %}"></script>
+    <script src="{% static 'crm/ficha_udd/js/selectors.js' %}"></script>
+    <script src="{% static 'crm/ficha_udd/js/init-data-create.js' %}"></script>
+    <script src="{% static 'crm/ficha_udd/js/multi-step-create.js' %}"></script>
+    <script src="{% static 'crm/ficha_udd/js/autocomplete-ubigeo.js' %}"></script>
+    <script src="{% static 'crm/ficha_udd/js/create-update.js' %}"></script>
+</body>
+
+</html>

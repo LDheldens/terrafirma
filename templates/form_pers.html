@@ -1,0 +1,18 @@
+{% extends 'list.html' %}
+{% load widget_tweaks %}
+{% load security_extras %}
+{% load static %}
+{% block head_list %}
+    <!--Formvalidation Libs-->
+    <link rel="stylesheet" href="{% static 'lib/formvalidation-1.8.0/css/formValidation.min.css' %}">
+    <script src="{% static 'lib/formvalidation-1.8.0/js/es6-shim.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/FormValidation.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/plugins/Bootstrap.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/locales/es_ES.min.js' %}"></script>
+    <!--Block head form-->
+    {% block head_form %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+    
+{% endblock content%}

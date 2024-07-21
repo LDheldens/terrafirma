@@ -1,0 +1,126 @@
+<div id="contenedor-modal">
+    <div id="modal">
+        <div class="contener-btn-close">
+            <button type="button" class="btn-close-modal">
+                x
+            </button>
+
+        </div>
+
+        <form id="form-titular" method="post" action="{{ titular_create }}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="title">¿COPIA DOC. IDENTIDAD?</h2>
+            <div class="group_1 mtp">
+                <div class="radio">
+                    <input type="radio" value="si" name="copia_doc_identidad" id="si">
+                    <label for="si">Si</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" value="no" name="copia_doc_identidad" id="no">
+                    <label for="no">No</label>
+                </div>
+                <div class="error-radio">
+                    Seleccione una opcion
+                </div>
+
+            </div>
+            <div class="group_2 mt">
+                <input type="text" id="dni" placeholder="Digite su DNI">
+                <button type="button" id="button-dni">Buscar</button>
+            </div>
+            <div class="group_3 mt">
+                <div>
+                    <label for="apellidos">APELLIDOS:</label>
+                    <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos">
+                </div>
+                <div>
+                    <label for="nombres">NOMBRES:</label>
+                    <input type="text" name="nombres" id="nombres" placeholder="Nombres">
+
+                </div>
+            </div>
+            <div class="cont-ec-nd">
+                <div class="group_4 mtp">
+                    <h2 class="title mt">ESTADO CIVIL:</h2>
+                    <div>
+                        <div class="radio">
+                            <input type="radio" value="soltero" name="estado_civil" id="soltero">
+                            <label for="soltero">S</label>
+                        </div>
+                        <div class="radio">
+                            <input type="radio" value="casado" name="estado_civil" id="casado">
+                            <label for="casado">C</label>
+                        </div>
+                        <div class="radio">
+                            <input type="radio" value="viudo" name="estado_civil" id="viudo">
+                            <label for="viudo">V</label>
+                        </div>
+                        <div class="radio">
+                            <input type="radio" value="divorciado" name="estado_civil" id="divorciado">
+                            <label for="divorciado">D</label>
+                        </div>
+                        <div class="error-radio">
+                            Seleccione una opcion
+                        </div>
+                    </div>
+                </div>
+                <div class="group_5 mt">
+                    <label for="numero-doc">N° DOCUMENTO:</label>
+                    <input name="num_doc" type="text" id="numero-doc" placeholder="N° Doc.">
+                </div>
+            </div>
+            
+
+            <div class="mt">
+                <textarea id="observaciones-modal" name="observaciones" rows="3" class="form-control" placeholder="Observaciones"></textarea>
+
+            </div>
+            <div class="group_7 mt">
+                <div class="mt">
+                    <label for="pdf_documento">Subir PDF con los documentos:</label>
+                    <input onchange="showPdfButton(this)" type="file" name="pdf_documento" accept="application/pdf" id="pdf_documento">
+                    
+                </div>
+                <button 
+                    id="pdf_button_preview" 
+                    class="pdf-preview" 
+                    style="display: none;" 
+                    onclick="openPdf()"
+                >
+                    <i class="fas fa-file-pdf" style="color: red;"></i> Ver PDF
+                </button>
+                
+            </div>
+            <button id="btn-submit" type="submit">
+                Registrar
+            </button>
+        </form>
+
+        <div id="table-titulares">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Nombres
+                        </th>
+                        <th>
+                            Apellidos
+                        </th>
+                        <th>
+                            Estado civil
+                        </th>
+                        <th>
+                            Documento
+                        </th>
+                        <th>
+                            Representante
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'crm/ufit/js/list.js' %}"></script>
+    {% comment %} <link rel="stylesheet" href="{% static 'crm/ficha_udd/css/list.css' %}"> {% endcomment %}
+{% endblock %}
+
+{% block columns %}
+    <th class="text-center">Codigo</th>
+    <th class="text-center">Area</th>
+    <th class="text-center">Perimetro</th>
+    <th class="text-center">Número de lote</th>
+    <th class="text-center">Número de manzana</th>
+    <th class="text-center">Opciones</th>
+
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+
+{% block javascript_list %}
+
+{% endblock %}

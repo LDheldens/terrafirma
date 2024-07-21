@@ -1,0 +1,29 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'crm/ficha_udd/js/list.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'crm/ficha_udd/css/list.css' %}">
+{% endblock %}
+
+{% block columns %}
+    <th class="text-center">Departamento</th>
+    <th>Provincia</th>
+    <th class="text-center">Distrito</th>
+    <th>Nombre - Poseción</th>
+    <th class="text-center">Porcentaje - avance</th>
+    <th class="text-center">Opciones</th> 
+
+{% endblock %}
+
+{% block rows %}
+    {% comment %} {% for posesion in object_list %}
+        <div>
+            <i style="font-size: 50px;" class="fas fa-folder"></i>
+            <p>EJEMPLO DE POSESI</p>
+        </div>
+    {% endfor %} {% endcomment %}
+{% endblock %}
+
+{% block javascript_list %}
+
+{% endblock %}

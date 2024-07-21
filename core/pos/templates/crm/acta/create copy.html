@@ -1,0 +1,1163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'css/tailwindcss/output.css' %}" rel="stylesheet">
+    <link href="{% static 'css/tailwindcss/conaford.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e00c278a93.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<style>
+
+/* .swal2-html-container {
+  max-height: 400px;
+  overflow-y: auto;
+} */
+
+.swal2-html-container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+.swal2-actions {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+</style>
+<body>
+    <!-- html -->
+    <div id="main">
+    <!-- <div class="hidden" id="main"> -->
+        <!-- navbar -->
+        <nav class="bg-[#007BFF] w-full">
+            <div class="mx-auto p-4 max-w-7xl flex">
+
+                <div class="flex gap-4 justify-center items-center">
+                    <a href="/dashboard/" class="flex justify-center gap-1 items-center">
+                        <img src="{% static 'img/default/empty.png' %}" alt="AdminLTE Logo" class="brand-image"
+                            style="opacity: .8" width="33">
+                        <span class="text-base text-white">Polariss</span>
+                    </a>
+                    <div class="relative">
+                        <!-- button -->
+                        <button
+                            class="flex items-center justify-between w-full py-2 px-3 text-white md:hover:bg-transparent md:border-0 md:p-0 md:w-auto"
+                            id="dropdownNavbarLink"><span class="fas fa-folder-open mr-1"></span>Modulos</button>
+                        <!-- Dropdown menu -->
+                        <div class="absolute z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+                            id="dropdownNavbar">
+                            <ul class="py-2 text-sm text-gray-700">
+                                <!-- <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                        </li> -->
+                                <!-- Dropdown menu -->
+                                <li class="relative group">
+                                    <button type="button" class="flex items-center justify-between w-full px-4 py-2 ">
+                                        <i class="fas fa-hand-holding-usd"></i>
+                                        Administrativo<svg class="w-2.5 h-2.5 ms-2.5" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4"></path>
+                                        </svg>
+                                    </button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-funnel-dollar"></i> Cuentas por cobrar</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-boxes"></i>Consultoría<svg class="w-2.5 h-2.5 ms-2.5"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg></button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-truck-loading"></i> Categorías</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-box"></i> Productos</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-calculator"></i>Facturación<svg class="w-2.5 h-2.5 ms-2.5"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg></button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-user-friends"></i> Clientes</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-shopping-cart"></i> Ventas</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-chart-pie"></i>Reportes<svg class="w-2.5 h-2.5 ms-2.5"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg></button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-chart-bar"></i>Cuentas por
+                                                    cobrar</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-chart-bar"></i>Ventas</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-lock"></i>Seguridad<svg class="w-2.5 h-2.5 ms-2.5"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg></button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700">
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-user-secret"></i> Accesos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-tools"></i> Conf.
+                                                    Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-users"></i> Grupos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-th-large"></i> Modulos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-database"></i> Respaldos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-door-open"></i> Tipos de
+                                                    Módulos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                                        class="fas fa-user"></i> Usuarios</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="relative group">
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-key"></i>
+                                        Cambiar password</a>
+                                </li>
+                                <li class="relative group">
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i
+                                            class="fas fa-building"></i> Compañia</a>
+                                </li>
+                                <li class="relative group">
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-user"></i>
+                                        Editar perfil</a>
+                                </li>
+                            </ul>
+                            <!-- <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                    </div> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- button burger -->
+                <button
+                    class="hidden order-1 px-3 py-2 text-gray-400 border border-gray-400 rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+                    type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <!-- last -->
+                <ul class="order-1 md:order-3 flex flex-row items-center ml-auto space-x-4 text-white">
+                    <li class="nav-item">
+                        <a class="nav-link infobyip" rel="infobyip" title="" data-toggle="tooltip"
+                            data-placement="bottom" data-html="true"
+                            data-original-title="Ubicación: Lima, LMA, Peru<br>Proveedor: TDP-GRS<br>País:PE">
+                            190.236.6.31
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-user"></i> Administrador
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login/logout">
+                            <i class="fas fa-power-off"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- header -->
+        <div class="mx-auto p-4 max-w-7xl flex items-center">
+            <a href="/dashboard/" class="mr-2">
+                <i class="fas fa-home"></i> Panel
+            </a>
+            <span class="mx-2">/</span>
+            <a href="/pos/crm/acta/" class="text-blue-500">
+                <i class="fas fa-user-friends"></i> Ficha de lavantamiento
+            </a>
+        </div>
+        <!-- main -->
+        <div class="md:container md:mx-auto bg-[#EAEBEB] w-full p-4 mb-4">
+
+            <!-- multi-step -->
+            <ol id="multi-step"
+                class="flex justify-start sm:justify-center items-center sm:items-center flex-col sm:flex-row gap-4 mb-2 p-4">
+                <li class="flex items-center text-blue-600 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-blue-600 rounded-full shrink-0">
+                        1
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 1</h3>
+                </li>
+                <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                        2
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 2</h3>
+                </li>
+                <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                        3
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 3</h3>
+                </li>
+                <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                        4
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 4</h3>
+                </li>
+                <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                        5
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 5</h3>
+                </li>
+            </ol>
+
+            <header>
+                <!-- border-2 rounded  -->
+                <h1 class="font-bold text-center text-2xl mb-4 font-gotham-bold">
+                    <!-- ACTUALIZAR FICHA DE LEVANTAMIENTO {{ acta_id }} -->
+                    AÑADIR FICHA DE LEVANTAMIENTO
+                </h1>
+                <!-- linea -->
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-emerald-200">
+                    <div style="width: 10%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
+                    </div>
+                    <div style="width: 15%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500">
+                    </div>
+                    <div style="width: 25%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500">
+                    </div>
+                </div>
+            </header>
+            <!-- 1.- DATOS DE LA POSESIÓN INFORMAL -->
+            <form method="post" id="form_ficha_levantamiento" enctype="multipart/form-data">
+            <div class="hidden" id="part1">
+                <!-- Fecha, Cel. Wssp. -->
+                <div class="flex flex-col gap-x-2 sm:flex-row mb-4">
+                    <!-- Fecha -->
+                    <div class="flex-1">
+                        <label for="fecha"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Fecha:</label>
+                        <!-- <input type="text" id="fecha" name="fecha"
+                      placeholder="dd/mm/aaaa"
+                      class="w-full mt-1 px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"> -->
+                        <input type="date" id="fecha" name="fecha" class="w-full px-4 mt-1 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]
+                      ">
+                    </div>
+                    <!-- Cel. Wssp -->
+                    <div class="flex-1">
+                        <label for="cel-wssp"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Cel.
+                            Wssp:</label>
+                        <input type="number" id="cel-wssp" name="cel-wssp"
+                            class="w-full mt-1 px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="Cel. Wssp">
+                    </div>
+                </div>
+            </div>
+            <!-- 2.- IDENTIFICACIÓN DEL PREDIO -->
+            <div class="hidden" id="part2">
+                <h1 class="font-bold mb-4 font-gotham-bold">2.- IDENTIFICACIÓN DEL PREDIO</h1>
+                <!-- Consigne dirección fiscal y referencia -->
+                <div class="mb-2">
+                    <input type="text" id="direccion-fiscal-referencia" name="direccion-fiscal-referencia"
+                        class="w-full  sm:w-[80%] px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                        placeholder="Consigne dirección fiscal y referencia">
+                </div>
+                <!-- Descripción física del predio-->
+                <div class="mb-2">
+                    <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Descripción fisica del
+                        predio</h2>
+                    <ul class="mt-1 sm:w-[85%] w-full bg-[#00A5A5] text-sm font-medium text-gray-700 sm:flex">
+                        <!-- border-gray-100 sm:flex"> -->
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="descripcion-fisica-predio-construido" type="radio" value="construido"
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4">
+                            <label for="descripcion-fisica-predio-construido"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Construido</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="descripcion-fisica-predio-en-construccion" type="radio" value="en-construccion"
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4">
+                            <label for="descripcion-fisica-predio-en-construccion"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">En
+                                construcción</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="descripcion-fisica-predio-cercado" type="radio" value="cercado"
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4">
+                            <label for="descripcion-fisica-predio-cercado"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Cercado</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="descripcion-fisica-predio-derruido" type="radio" value="derruido"
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4">
+                            <label for="descripcion-fisica-predio-derruido"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Derruido</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="descripcion-fisica-predio-vacio" type="radio" value="vacio"
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4">
+                            <label for="descripcion-fisica-predio-vacio"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Vacio</label>
+                        </li>
+                        <li class="flex-2 flex items-center gap-x-2 px-2 py-4">
+                            <input id="descripcion-fisica-predio-otros" type="radio" value="otros"
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4">
+                            <label for="descripcion-fisica-predio-otros"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Otros</label>
+                            <input type="text" id="descripcion-fisica-predio-value"
+                                class="sm:w-20 px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none"
+                                placeholder="Especificar">
+                        </li>
+                    </ul>
+                </div>
+                <!-- Uso-->
+                <div class="mb-2">
+                    <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Uso</h2>
+                    <ul class="mt-1 sm:w-[70%] w-full bg-[#acacac] text-sm font-medium text-gray-700 sm:flex">
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="uso-vivienda" type="radio" value="vivienda" name="list-radio-uso"
+                                class="w-4 h-4">
+                            <label for="uso-vivienda"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Vivienda</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="uso-comercio" type="radio" value="comercio" name="list-radio-uso"
+                                class="w-4 h-4">
+                            <label for="uso-comercio"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Comercio</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="uso-vivienda-comercio" type="radio" value="vivienda-comercio"
+                                name="list-radio-uso" class="w-4 h-4">
+                            <label for="uso-vivienda-comercio"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Vivienda
+                                Comercio</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="uso-equipamiento-urbano" type="radio" value="equipamiento-urbano"
+                                name="list-radio-uso" class="w-4 h-4">
+                            <label for="uso-equipamiento-urbano"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Equipamiento
+                                Urbano</label>
+                        </li>
+                        <li class="flex-2 flex items-center gap-x-2 px-2 py-4">
+                            <input id="uso-otros" type="radio" value="otros" name="list-radio-uso" class="w-4 h-4">
+                            <label for="uso-otros"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Otros</label>
+                            <input type="text" id="uso-otros-value"
+                                class="sm:w-20 px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none"
+                                placeholder="Especificar">
+                        </li>
+                    </ul>
+                </div>
+                <!-- Serv. Bas. -->
+                <div class="mb-4">
+                    <label class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Serv. Bas.</label>
+                    <ul class="mt-1 sm:w-[67%] w-full bg-[#FFAF00] text-sm font-medium text-gray-700 sm:flex">
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="serv-bas-agua" type="checkbox" value="agua" name="list-checkbox-serv-bas"
+                                class="w-4 h-4">
+                            <label for="serv-bas-agua"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Agua</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="serv-bas-desagüe" type="checkbox" value="desagüe" name="list-checkbox-serv-bas"
+                                class="w-4 h-4">
+                            <label for="serv-bas-desagüe"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Desagüe</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="serv-bas-energia-electrica" type="checkbox" value="energia-electrica"
+                                name="list-checkbox-serv-bas" class="w-4 h-4">
+                            <label for="serv-bas-energia-electrica"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Energia
+                                Electrica</label>
+                        </li>
+                        <li
+                            class="flex-1 flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="serv-bas-internet-y-o-telefonia" type="checkbox" value="internet"
+                                name="list-checkbox-serv-bas" class="w-4 h-4">
+                            <label for="serv-bas-internet-y-o-telefonia"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Internet
+                                y/o telefonía</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 3.- DATOS DE(LOS) TITULAR(ES)/REPRESENTANTE(S) -->
+            <div class="hidden" id="part3">
+                <!-- titlares -->
+                <div class="relative  shadow-md sm:rounded-lg bg-white p-4  mb-4">
+                    <div class="mb-2 py-2">
+                        <h2 class="text-sm text-gray-700 font-bold">TITULARES</h2>
+                    </div>
+                    <div class="overflow-y-auto">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-center text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Apellidos
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Nombres
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Dni
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Estado Civil
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Copia Documento
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Documentos
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Observaciones
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Opciones
+                                    </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody class="text-center" id="titulares-container">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 py-2 flex justify-end">
+                        <button type="button" id="btn-agregar-titular" class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]">
+                            Añadir titular
+                        </button>
+                    </div>
+                    <div class="form-titular hidden">
+                        <p id="mensaje_error" class="bg-red-500 hidden p-2 my-2 text-white font-bold text-center rounded-md"></p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="mb-4">
+                                <label for="copia_doc_identidad" class="block text-sm font-medium text-gray-700">Copia de Documento de Identidad:</label>
+                                <select id="copia_doc_identidad" name="copia_doc_identidad" class="mt-1 p-2 w-full border text-center border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                                    <option value="true">Sí</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="apellidos" class="block text-sm font-medium text-gray-700">Apellidos:</label>
+                                <input type="text" id="apellidos" name="apellidos" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="nombres" class="block text-sm font-medium text-gray-700">Nombres:</label>
+                                <input type="text" id="nombres" name="nombres" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="estado_civil" class="block text-sm font-medium text-gray-700">Estado Civil:</label>
+                                <input type="text" id="estado_civil" name="estado_civil" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="num_doc" class="block text-sm font-medium text-gray-700">Número de Documento:</label>
+                                <input type="number" id="num_doc" name="num_doc" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="imagen" class="block text-sm font-medium text-gray-700">PDF con los documentos:</label>
+                                <input type="file" accept=".pdf" id="pdf_documento" name="pdf_documento" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button type="button" id="guardar_Titular" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Guardar</button>
+                        </div>
+                            
+                    </div>
+                </div>
+                <!-- representantes -->
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white p-4  mb-4">
+                    <div class="mb-2 py-2">
+                        <h2 class="text-sm text-gray-700 font-bold">REPRESENTANTES</h2>
+                    </div>
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 overflow-auto">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Apellidos
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Nombres
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Dni
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd:bg-white even:bg-gray-50 border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    apelidos 1 
+                                </th>
+                                <td class="px-6 py-4">
+                                    nombres 1
+                                </td>
+                                <td class="px-6 py-4">
+                                    77777777 1
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button class="">
+                                        <a href="#" class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]">Ver</a>
+                                    </button>
+                                    <button class="">
+                                        <a href="#" class="mb-2 bg-[#8b0031] font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]">Eliminar</a>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="odd:bg-white even:bg-gray-50 border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    apelidos 2
+                                </th>
+                                <td class="px-6 py-4">
+                                    nombres 2
+                                </td>
+                                <td class="px-6 py-4">
+                                    77777777 2
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button class="">
+                                        <a href="#" class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]">Ver</a>
+                                    </button>
+                                    <button class="">
+                                        <a href="#" class="mb-2 bg-[#8b0031] font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]">Eliminar</a>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-4 py-2 flex justify-end">
+                        <button class="" id="btn-agregar-representante">
+                            <a href="#" class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]">Añadir representante +</a>
+                            </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 4.- BOCETO DEL PREDIO -->
+            <div class="hidden" id="part4">
+                <!-- BOCETO DEL PREDIO -->
+                <h1 class="font-bold text-sm mb-1 font-gotham-bold">4.- BOCETO DEL PREDIO</h1>
+                {% comment %} <label for="boceto-predio"
+                    class="mb-2 block h-40 border-2 border-gray-200 border-dashed cursor-pointer bg-gray-50 hover:bg-gray-100">
+                    <div class="flex flex-col items-center justify-center py-5">
+                        <svg class="w-12 h-12 text-black" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                        </svg>
+                        <p 
+                            class="text-black"><span class="font-gotham-bold"
+                        >
+                            Click para subir
+                            </span> <span
+                                class="font-gotham-book">o arrastrar y soltar</span></p>
+                        <p class="text-black font-gotham-bold">PDF</p>
+                    </div>
+                    <input id="boceto-predio" type="file" class="hidden" />
+                </label> {% endcomment %}
+                <div class="bg-white rounded-md p-5 my-5">
+                    <label for="boceto_predio" class="font-bold">Suba un boceto del predio:</label>
+                    <input type="file" name="boceto_predio" id="boceto-predio">
+                </div>
+                <!-- ¿HITOS CONSOLIDADOS?, ¿ACCESO A VIA?, ¿REQUIERE SUBDIVISIÓN?, ¿REQUIERE ALINEAMIENTO?, ¿APERTURA DE VIA?, ¿LIBRE DE RIESGO?, ¿REQ. TRANSF. DE TITULAR?, ¿LITIGIO, DENUNCIA, ETC? -->
+                <div class="flex flex-col gap-1 mb-2">
+                    <!-- ¿HITOS CONSOLIDADOS? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿HITOS
+                            CONSOLIDADOS?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="hito-consolidado-si" type="radio" value="si" checked
+                                    name="list-radio-hitos-consolidado" class="w-4 h-4">
+                                <label for="hito-consolidado-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="hito-consolidado-no" type="radio" value="no"
+                                    name="list-radio-hitos-consolidado" class="w-4 h-4">
+                                <label for="hito-consolidado-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿ACCESO A VIA? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿ACCESO
+                            A VIA?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="acceso-via-si" type="radio" value="si" name="list-radio-acceso-via" checked
+                                    class="w-4 h-4">
+                                <label for="acceso-via-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="acceso-via-no" type="radio" value="no" name="list-radio-acceso-via"
+                                    class="w-4 h-4">
+                                <label for="acceso-via-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ¿REQUIERE SUBDIVISIÓN? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿REQUIERE SUBDIVISIÓN?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="subdivion-si" type="radio" value="si" name="list-radio-subdivion" checked
+                                    class="w-4 h-4">
+                                <label for="subdivion-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="subdivion-no" type="radio" value="no" name="list-radio-subdivion"
+                                    class="w-4 h-4">
+                                <label for="subdivion-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿CUÁNTOS LOTES? -->
+                    <div class="w-full sm:w-1/3" id="container-numero-lotes">
+                        <label for="numero-lotes"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">¿CUÁNTOS
+                            LOTES?</label>
+                        <input type="number" id="numero-lotes" name="numero-lotes"
+                            class="w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="¿Cuántos lotes?">
+                    </div>
+                    <!-- ¿REQUIERE ALINEAMIENTO? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿REQUIERE ALINEAMIENTO?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="alineamiento-si" type="radio" value="si" name="list-radio-alineamiento"
+                                    class="w-4 h-4">
+                                <label for="alineamiento-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="alineamiento-no" type="radio" value="no" name="list-radio-alineamiento"
+                                    checked class="w-4 h-4">
+                                <label for="alineamiento-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿APERTURA DE VIA? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿APERTURA DE VIA?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="apertura-via-si" type="radio" value="si" name="list-radio-apertura-via"
+                                    checked class="w-4 h-4">
+                                <label for="apertura-via-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="apertura-via-no" type="radio" value="no" name="list-radio-apertura-via"
+                                    class="w-4 h-4">
+                                <label for="apertura-via-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿LIBRE DE RIESGO? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿LIBRE
+                            DE RIESGO?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="libre-riesgo-si" type="radio" value="si" name="list-radio-libre-riesgo"
+                                    checked class="w-4 h-4">
+                                <label for="libre-riesgo-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="libre-riesgo-no" type="radio" value="no" name="list-radio-libre-riesgo"
+                                    class="w-4 h-4">
+                                <label for="libre-riesgo-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿REQ. TRANSF. DE TITULAR? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿REQ.
+                            TRANSF. DE TITULAR?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="transf-titular-si" type="radio" value="si" name="list-radio-transf-titular"
+                                    class="w-4 h-4">
+                                <label for="transf-titular-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="transf-titular-no" type="radio" value="no" name="list-radio-transf-titular"
+                                    checked class="w-4 h-4">
+                                <label for="transf-titular-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿LITIGIO, DENUNCIA, ETC? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿LITIGIO, DENUNCIA, ETC?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="litigio-denuncia-etc-si" type="radio" value="si" checked
+                                    name="list-radio-litigio-denuncia-etc" class="w-4 h-4">
+                                <label for="litigio-denuncia-etc-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="litigio-denuncia-etc-no" type="radio" value="no" checked
+                                    name="list-radio-litigio-denuncia-etc" class="w-4 h-4">
+                                <label for="litigio-denuncia-etc-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AREA SEGÚN EL TITULAR/REPRESENTANTE -->
+                <div class="mb-2 w-full sm:w-1/3">
+                    <label for="area-segun-titular-representante"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">ÁREA SEGÚN EL
+                        TITULAR/REPRESENTANTE</label>
+                    <input type="number" id="area-segun-titular-representante" name="area-segun-titular-representante"
+                        class="w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                        placeholder="Área según el titular/presidente m2">
+                </div>
+
+                <!-- COMENTARIO ADIC.: -->
+                <div class="mb-4">
+                    <label for="comentario-adic"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">COMENTARIO
+                        ADIC.:</label>
+                    <textarea id="comentario-adic" rows="4" name="comentario1"
+                        class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                        placeholder="Comentario adic.:"></textarea>
+                </div>
+            </div>
+            <!-- 5.- DEL LEVANTAMIENTO TOPOGRÁFICO: -->
+            <div class="hidden" id="part5">
+                <h1 class="font-bold text-sm mb-1 font-gotham-bold">5.- DEL LEVANTAMIENTO TOPOGRÁFICO:</h1>
+                <!-- CODIGO, HORA, N° PUNTOS -->
+                <div class="flex flex-col gap-x-2 sm:flex-row mb-4">
+                    <!-- CODIGO -->
+                    <div class="flex-1">
+                        <label for="codigo"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">CODIGO</label>
+                        <input type="text" id="codigo" name="codigo"
+                            class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="Codigo">
+                    </div>
+                    <!-- HORA -->
+                    <div class="flex-1">
+                        <label for="hora"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">HORA</label>
+                        <input type="time" id="hora" name="hora"
+                            class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="Hora">
+                    </div>
+                    <!-- N° PUNTOS -->
+                    <div class="flex-1">
+                        <label for="numero-puntos"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">N° DE
+                            PUNTOS LEVANTADOS</label>
+                        <input type="number" id="numero-puntos" name="numero-puntos"
+                            class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="N° de puntos levantados">
+                    </div>
+                </div>
+
+                <!-- OPERADOR, EQUIPO TP.: -->
+                <div class="flex flex-col gap-x-2 sm:flex-row mb-4">
+                    <!-- OPERADOR:-->
+                    <div class="flex-1">
+                        <label for="operador"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">OPERADOR</label>
+                        <input type="text" id="operador" name="operador"
+                            class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="Operador">
+                    </div>
+                    <!-- EQUIPO TP.: -->
+                    <div class="flex-1">
+                        <label for="equipo-tp"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">EQUIPO
+                            TP</label>
+                        <input type="text" id="equipo-tp" name="equipo-tp"
+                            class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="Equipo tp">
+                    </div>
+                </div>
+
+                <!-- TIEMPO ATMOSFERICO -->
+                <div class="mb-2 flex flex-col sm:flex-row items-start sm:items-center gap-x-10">
+                    <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">TIEMPO ATMOSFERICO:
+                    </h2>
+                    <div class="flex flex-col sm:flex-row gap-x-1">
+                        <div class="flex items-center gap-x-1 w-full">
+                            <input id="soleado" type="radio" value="soleado" name="list-radio-tiempo-atmosferico"
+                                checked class="w-4 h-4">
+                            <label for="soleado"
+                                class="font-gotham-bold text-sm block bg-yellow-300 p-2">SOLEADO</label>
+                        </div>
+                        <div class="flex items-center gap-x-1">
+                            <input id="lluvioso" type="radio" value="lluvioso" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4">
+                            <label for="lluvioso"
+                                class="font-gotham-bold text-sm block bg-blue-400 p-2">LLUVIOSO</label>
+                        </div>
+                        <div class="flex items-center gap-x-1">
+                            <input id="torment" type="radio" value="torment" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4">
+                            <label for="torment"
+                                class="font-gotham-bold text-sm block bg-black p-2 text-white">TORMENT.</label>
+                        </div>
+                        <div class="flex items-center gap-x-1">
+                            <input id="nublado" type="radio" value="nublado" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4">
+                            <label for="nublado" class="font-gotham-bold text-sm block bg-gray-400 p-2">NUBLADO</label>
+                        </div>
+                        <div class="flex items-center gap-x-1">
+                            <input id="neblinoso" type="radio" value="neblinoso" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4">
+                            <label for="neblinoso"
+                                class="font-gotham-bold text-sm block bg-blue-200 p-2">NEBLINOSO</label>
+                        </div>
+                        <div class="flex items-center gap-x-1">
+                            <input id="nevoso" type="radio" value="nevoso" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4">
+                            <label for="nevoso" class="font-gotham-bold text-sm block bg-white p-2">NEVOSO</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMENTARIOS/OBSERVACIONES: -->
+                <div class="mb-4">
+                    <label for="comentario-observaciones"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">COMENTARIOS/OBSERVACIONES:</label>
+                    <textarea id="comentario-observaciones" rows="4" name="comentario2"
+                        class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                        placeholder="Comentario/observaciones."></textarea>
+                </div>
+            </div>
+            <!-- 8.- ADICIONALES: -->
+            <div class="hidden" id="part8">
+                <h1 class="font-bold text-sm mb-1 font-gotham-bold">8.- ADICIONALES:</h1>
+                <!-- SE ADJUNTA, TOMA FOTOGRAFICA DEL PREDIO, OTROS -->
+                <div class="flex flex-col sm:flex-row justify-between gap-4 mb-2">
+                    <!-- SE ADJUNTA, TOMA FOTOGRAFICA DEL PREDIO -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-[50%]">
+                        <h2 class="w-full sm:w-[75%] text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">
+                            SE
+                            ADJUNTA, TOMA FOTOGRAFICA DEL PREDIO:</h2>
+                        <div class="flex gap-x-2 w-full sm:w-[25%]">
+                            <div class="flex items-center gap-x-1">
+                                <input id="no" type="radio" value="no" name="list-radio-toma-fotografica-predio"
+                                    class="w-5 h-5">
+                                <label for="no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="si" type="radio" value="si" name="list-radio-toma-fotografica-predio" checked
+                                    class="w-5 h-5">
+                                <label for="si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- OTROS -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-[30%]">
+                        <label for="otros"
+                            class="w-full sm:w-[30%] text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">OTROS</label>
+                        <input type="text" id="otros" name="otros"
+                            class="w-full sm:w-[70%] px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                            placeholder="Otros">
+                    </div>
+
+                </div>
+                <!-- IMAGEN PREDIO -->
+                <div class="flex justify-start mb-4">
+                    <div class="p-4 bg-white hover:bg-gray-100 w-1/3" id="container-toma-fotografica-predio">
+                        <div
+                            class="p-6 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                            <input id="toma-fotografica-predio" type="file" class="hidden" accept="image/*">
+                            <label for="toma-fotografica-predio" class="cursor-pointer">
+                                <img class="w-full h-40 mb-2" alt="Image preview">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-700 mx-auto mb-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5">
+                                    </path>
+                                </svg>
+                                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Subir toma fotografica
+                                    del predio
+                                </h5>
+                                <p class="font-normal text-sm text-gray-400 md:px-6">El tamaño de la foto debe ser
+                                    inferior a 2 MB. <b class="text-gray-600">2mb</b>
+                                </p>
+                                <p class="font-normal text-sm text-gray-400 md:px-6">y debe estar en formato <b
+                                        class="text-gray-600">JPG, PNG</b>.</p>
+                                <span id="filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white w-full hidden" id="container-toma-fotografica-predio-comentarios">
+                        <label for="toma-fotografica-predio-comentarios"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">COMENTARIOS:</label>
+                        <textarea id="toma-fotografica-predio-comentarios" rows="4"
+                            class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                            placeholder="Comentarios."></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 9.- FIRMA DEL OPERADOR TOPOGRÁFICO, REPRESENTANTE DE LA COMISIÓN Y SUPERVISOR DE CAMPO -->
+            <div class="hidden" id="part9">
+                <h1 class="font-bold text-sm mb-1 font-gotham-bold">9.- FIRMA DEL OPERADOR TOPOGRÁFICO, REPRESENTANTE DE
+                    LA COMISIÓN Y SUPERVISOR DE CAMPO</h1>
+                <!-- <h1 class="font-bold text-sm mb-1 font-gotham-bold">9.- FIRMA DE LOS ACTORES INTERVINIENTES:</h1> -->
+
+                <!-- 9.- FIRMA DEL OPERADOR TOPOGRÁFICO, REPRESENTANTE DE LA COMISIÓN Y SUPERVISOR DE CAMPO -->
+                <div class="p-5 mb-4 border-2 border-gray-300 flex flex-col sm:flex-row gap-4 justify-between">
+                    <!-- firma Operador(Topografo) -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden items-center">
+                        <div class="p-4 hover:bg-gray-100">
+                            <div
+                                class="p-6 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                <input id="firma-operador-topografo" type="file" class="hidden" accept="image/*" />
+                                <label for="firma-operador-topografo" class="cursor-pointer">
+                                    <img class="w-full h-40 mb-2" alt="Image preview">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="w-8 h-8 text-gray-700 mx-auto mb-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                    </svg>
+                                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Subir firma del
+                                        operador(topografo)</h5>
+                                    <p class="font-normal text-sm text-gray-400 md:px-6">El tamaño de la foto debe ser
+                                        inferior a 2 MB. <b class="text-gray-600">2mb</b></p>
+                                    <p class="font-normal text-sm text-gray-400 md:px-6">y debe estar en formato <b
+                                            class="text-gray-600">JPG, PNG</b>.</p>
+                                    <span id="filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- firma Rpr. Comisión -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden items-center">
+                        <div class="p-4 hover:bg-gray-100">
+                            <div
+                                class="p-6 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                <input id="firma-representante-comision" type="file" class="hidden" accept="image/*" />
+                                <label for="firma-representante-comision" class="cursor-pointer">
+                                    <img class="w-full h-40 mb-2" alt="Image preview">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="w-8 h-8 text-gray-700 mx-auto mb-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                    </svg>
+                                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Subir firma del
+                                        representante de la comisión</h5>
+                                    <p class="font-normal text-sm text-gray-400 md:px-6">El tamaño de la foto debe ser
+                                        inferior a 2 MB. <b class="text-gray-600">2mb</b></p>
+                                    <p class="font-normal text-sm text-gray-400 md:px-6">y debe estar en formato <b
+                                            class="text-gray-600">JPG, PNG</b>.</p>
+                                    <span id="filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- firma Supervisor de Campo -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden items-center">
+                        <div class="p-4 hover:bg-gray-100">
+                            <div
+                                class="p-6 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                <input id="firma-supervisor-campo" type="file" class="hidden" accept="image/*" />
+                                <label for="firma-supervisor-campo" class="cursor-pointer">
+                                    <img class="w-full h-40 mb-2" alt="Image preview">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="w-8 h-8 text-gray-700 mx-auto mb-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                    </svg>
+                                    <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-700">Subir firma del
+                                        supervisor de campo</h5>
+                                    <p class="font-normal text-sm text-gray-400 md:px-6">El tamaño de la foto debe ser
+                                        inferior a 2 MB. <b class="text-gray-600">2mb</b></p>
+                                    <p class="font-normal text-sm text-gray-400 md:px-6">y debe estar en formato <b
+                                            class="text-gray-600">JPG, PNG</b>.</p>
+                                    <span id="filename" class="text-gray-500 bg-gray-200 z-50"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="h-px bg-red-700 border-0">
+
+                <!-- COMENTARIOS/OBSERVACIONES: -->
+                <div class="mb-2">
+                    <label for="firma-actores-intervinientes-comentario-observaciones"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">COMENTARIOS/OBSERVACIONES:</label>
+                    <textarea id="firma-actores-intervinientes-comentario-observaciones" rows="4"
+                        class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                        placeholder="Comentario/observaciones."></textarea>
+                </div>
+
+                <p class="font-gotham-book text-justify">
+                    El presente formato fue elaborado acorde a los estamentos de la Ley N°31560 - Ley que Otorga
+                    Funciones
+                    Compartidas a los Gobiernos Locales en los Procesos de Formalización de la Propiedad Informal, Ley
+                    N°28687 - Ley de Desarrollo y Complementaria de Formalización de la Propiedad Informal, Acceso al
+                    Suelo
+                    y Dotación de Servicios Básicos, modificada según Ley 31056 - Ley Que Amplia Los Plazos De La
+                    Titulación
+                    De Terrenos Ocupados Por Posesiones Informales y Dicta Medidas Para La Formaliación,
+                    D.S.N°006-2006-VIVIENDA - Reglamento del Título I de la Ley N° 28687, referido a "Formalización de
+                    la
+                    Propiedad Informal de Terrenos Ocupados por Posesiones informales, Centros Urbanos Informales y
+                    Urbanizaciones Populares", D.S.N°002-2021-VIVIENDA - Reglamento de la Ley N°31056, Ley que amplia
+                    los
+                    plazos de la titulación de terrenos ocupados por posesiones informales y dicta medidas para la
+                    formalización, el D.S.N°013-99-MTC - Reglamento de Formalización de la Propiedad a cargo de la
+                    COFOPRI y
+                    Convenio entre la Municipalidad Distrital de Huamancaca Chico y la Empresa CONAFORP E.I.R.L.
+                </p>
+            </div>
+            <!-- next && prev -->
+            <div class="flex justify-start sm:justify-center gap-4 sm:end">
+                <!-- <div>
+                    <button type="button" class="mb-2 bg-[#8b0031] font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]"
+                    id="btn-cancelar-titular">
+                    <a href="/pos/crm/acta/"
+                    ><i class="fas fa-times"></i> Cancelar</a>
+                    </button>
+                </div> -->
+
+                <div>
+                    <button type="button"
+                    class="mb-2 bg-[#008B8B] font-gotham-bold p-2 rounded text-white hover:bg-[#519494]"
+                    id="btn-agregar-titular">
+                    << Anterior</button>
+                    <button type="button"
+                        class="mb-2 bg-[#008B8B] font-gotham-bold p-2 rounded text-white hover:bg-[#519494]"
+                        id="btn-next">Siguiente >></button>
+                </div>
+            </div>
+
+        </div>
+        <!-- footer -->
+        <div class="mx-auto p-4 max-w-7xl flex gap-4 bg-[#EAEBEB] mb-4">
+            <a href="/pos/crm/acta/"
+                class="mb-2 bg-[#8b0031] font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]"
+                id="btn-cancelar"><i class="fas fa-times"></i> Cancelar</a>
+            <button type="submit" class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]"
+                id="btn-create"><i class="fas fa-save"></i> Agregar</button>
+        </div>
+    </form>
+    </div>
+    <script src="{% static 'crm/acta/js/selectors.js' %}"></script>
+    <script src="{% static 'crm/acta/js/conaforp-acta-1.js' %}"></script>
+    <!-- <script src="{% static 'crm/acta/js/conaforp-acta-2.js' %}"></script> -->
+    <script src="{% static 'crm/acta/js/conaforp-acta-create.js' %}"></script>
+</body>
+
+</html>

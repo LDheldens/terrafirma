@@ -1,0 +1,731 @@
+{% load static %}
+{% load security_extras %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="{% static 'css/tailwindcss/output.css' %}" rel="stylesheet"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{% static 'css/tailwindcss/conaford.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e00c278a93.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<style>
+
+/* .swal2-html-container {
+  max-height: 400px;
+  overflow-y: auto;
+} */
+
+.swal2-html-container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+/* .swal2-actions {
+  margin-top: 0;
+  margin-bottom: 0;
+} */
+
+</style>
+<body>
+    <!-- html -->
+    <div id="main">
+    <!-- <div class="hidden" id="main"> -->
+        <!-- navbar -->
+        {% include 'hztheader-tailwind.html' %}
+        <!-- header -->
+        <div class="mx-auto p-4 max-w-7xl flex items-center">
+            <a href="/dashboard/" class="mr-2">
+                <i class="fas fa-home"></i> Panel
+            </a>
+            <span class="mx-2">/</span>
+            <a href="/pos/crm/acta/" class="text-blue-500">
+                <i class="fas fa-user-friends"></i> Ficha de lavantamiento
+            </a>
+        </div>
+        <!-- main -->
+        <div class="md:container md:mx-auto bg-[#EAEBEB] w-full p-4 mb-4">
+
+            <!-- multi-step -->
+            <ol id="multi-step"
+                class="flex justify-start sm:justify-center items-center sm:items-center flex-col sm:flex-row gap-4 mb-2 p-4">
+                <li class="flex items-center text-blue-600 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-blue-600 rounded-full shrink-0">
+                        1
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 1</h3>
+                </li>
+                <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                        2
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 2</h3>
+                </li>
+                <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                        3
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 3</h3>
+                </li>
+                <li class="flex items-center text-gray-500 space-x-2.5 rtl:space-x-reverse cursor-pointer">
+                    <span
+                        class="flex items-center justify-center w-8 h-8 border-2 border-gray-500 rounded-full shrink-0">
+                        4
+                    </span>
+                    <h3 class="font-medium leading-tight">Paso 4</h3>
+                </li>
+            </ol>
+
+            <header>
+                <!-- border-2 rounded  -->
+                <h1 class="font-bold text-center text-2xl mb-4 font-gotham-bold">
+                    <!-- ACTUALIZAR FICHA DE LEVANTAMIENTO {{ acta_id }} -->
+                    <i class="fa-solid fa-file-pen"></i> ACTUALIZAR FICHA DE LEVANTAMIENTO 
+                </h1>
+                <!-- linea -->
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-emerald-200">
+                    <div style="width: 10%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
+                    </div>
+                    <div style="width: 15%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500">
+                    </div>
+                    <div style="width: 25%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500">
+                    </div>
+                </div>
+            </header>
+    <form method="post" id="form_ficha_levantamiento" enctype="multipart/form-data">
+        <!-- 1.- DATOS DE LA POSESIÓN INFORMAL -->
+            <div class="hidden" id="part1">
+                <!-- Fecha, Cel. Wssp. -->
+                <div class="flex flex-col gap-x-2 sm:flex-row mb-4">
+                    <!-- Fecha -->
+                    <div class="flex-1">
+                        <label for="fecha"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Fecha: <i class="fa-solid fa-calendar-days"></i></label>
+                        <!-- <input type="text" id="fecha" name="fecha"
+                      placeholder="dd/mm/aaaa"
+                      class="w-full mt-1 px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"> -->
+                        <input type="date" id="fecha" name="fecha" class="w-full px-4 mt-1 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]
+                      " value="{{ acta.fecha|date:"Y-m-d" }}">
+                    </div>
+                    <!-- Cel. Wssp -->
+                    <div class="flex-1">
+                        <label for="cel-wssp"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Cel.
+                            Wssp: <i class="fa-solid fa-phone"></i></label>
+                        <input type="text" id="cel-wssp" name="cel-wssp"
+                            class="w-full mt-1 px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="Cel. Wssp"
+                            value="{{ acta.cel_wsp }}"
+                            >
+                    </div>
+                </div>
+            </div>
+            <!-- 2.- IDENTIFICACIÓN DEL PREDIO -->
+            <div class="hidden" id="part2">
+                <h1 class="font-bold mb-4 font-gotham-bold">2.- IDENTIFICACIÓN DEL PREDIO</h1>
+                <!-- Consigne dirección fiscal y referencia -->
+                <div class="mb-2">
+                    <input type="text" id="direccion-fiscal-referencia" name="direccion-fiscal-referencia"
+                        class="w-full  sm:w-[80%] px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                        placeholder="Consigne dirección fiscal y referencia"
+                        value="{{ acta.direccion_fiscal }}"
+                        >
+                </div>
+                <!-- Descripción física del predio-->
+                <div class="mb-2">
+                    <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Descripción fisica del
+                        predio</h2>
+
+                    
+                        <ul class="mt-1 text-sm font-medium text-gray-700 sm:flex">
+                            <!-- border-gray-100 sm:flex"> -->
+                            <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                                <input id="descripcion-fisica-predio-construido" type="radio" value="consolidado" 
+                                {% if acta.descripcion_fisica == 'consolidado' %}checked{% endif %}
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4"
+                                >
+                                <label for="descripcion-fisica-predio-construido" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Consolidado</label>
+                            </li>
+                            <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                                <input id="descripcion-fisica-predio-en-construccion" type="radio" value="semi consolidado" name="list-radio-descripcion-fisica-predio" class="w-4 h-4"
+                                {% if acta.descripcion_fisica == 'semi consolidado' %}checked{% endif %}
+                                >
+                                <label for="descripcion-fisica-predio-en-construccion" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Semi Consolidado</label>
+                            </li>
+                            <li class="bg-[#00A5A5] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                                <input id="descripcion-fisica-predio-cercado" type="radio" value="precario" 
+                                {% if acta.descripcion_fisica == 'precario' %}checked{% endif %}
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4">
+                                <label for="descripcion-fisica-predio-cercado" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">precario</label>
+                            </li>
+                            <li class="bg-[#00A5A5] flex sm:w-[30%] justify-start items-center gap-x-2 px-2 py-4">
+                                <input id="descripcion-fisica-predio-otros" type="radio" 
+                                value="otros" 
+                                {% if acta.descripcion_fisica == 'otros' %}checked{% endif %}
+                                name="list-radio-descripcion-fisica-predio" class="w-4 h-4">
+                                <label for="descripcion-fisica-predio-otros" class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Otros</label>
+                                <input type="text" id="descripcion-fisica-predio-otros-value" name="descripcion-fisica-predio-otros-value" class="flex-1 px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none" placeholder="Especificar"
+                                value="{{ acta.descripcion_fisica_otros }}"
+                                >
+                            </li>
+                            </ul>
+                        
+                </div>
+                <!-- Uso-->
+                <div class="mb-2">
+                    <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Uso</h2>
+                    <ul class="mt-1 text-sm font-medium text-gray-700 sm:flex">
+                        <li
+                            class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="uso-vivienda" type="radio" value="vivienda" name="list-radio-uso"
+                                class="w-4 h-4"
+                                {% if acta.tipo_uso == 'vivienda' %}checked{% endif %}
+                                >
+                            <label for="uso-vivienda"
+                                class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Vivienda</label>
+                        </li>
+                        <li
+                            class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="uso-comercio" type="radio" value="comercio" name="list-radio-uso"
+                                class="w-4 h-4"
+                                {% if acta.tipo_uso == 'comercio' %}checked{% endif %}
+                                >
+                            <label for="uso-comercio"
+                                class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Comercio</label>
+                        </li>
+                        <li
+                            class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="uso-vivienda-comercio" type="radio" value="vivienda-comercio"
+                                name="list-radio-uso" class="w-4 h-4"
+                                {% if acta.tipo_uso == 'vivienda-comercio' %}checked{% endif %}
+                                >
+                            <label for="uso-vivienda-comercio"
+                                class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Vivienda
+                                Comercio</label>
+                        </li>
+                        <li
+                            class="bg-[#acacac] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="uso-equipamiento-urbano" type="radio" value="equipamiento-urbano"
+                                name="list-radio-uso" class="w-4 h-4"
+                                {% if acta.tipo_uso == 'equipamiento-urbano' %}checked{% endif %}
+                                >
+                            <label for="uso-equipamiento-urbano"
+                                class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Equipamiento
+                                Urbano</label>
+                        </li>
+                        <li class="bg-[#acacac] flex sm:w-[30%] justify-start items-center gap-x-2 px-2 py-4">
+                            <input id="uso-otros" type="radio" value="otros" name="list-radio-uso" class="w-4 h-4"
+                            {% if acta.tipo_uso == 'otros' %}checked{% endif %}
+                            >
+                            <label for="uso-otros"
+                                class="font-gotham-bold text-sm font-medium text-gray-100 cursor-pointer hover:text-gray-300">Otros</label>
+                            <input type="text" id="uso-otros-value" name="uso-otros-value"
+                                class="flex-1 px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none"
+                                placeholder="Especificar"
+                                {% if acta.tipo_uso_otros == 'otros' %}checked{% endif %}
+                                >
+                        </li>
+                    </ul>
+                </div>
+                <!-- Serv. Bas. -->
+                <div class="mb-4">
+                    <label class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Serv. Bas.</label>
+                    <ul class="mt-1 sm:flex text-sm font-medium text-gray-700">
+                        <li
+                            class="bg-[#FFAF00] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="serv-bas-agua" type="checkbox" value="agua" name="list-checkbox-serv-bas"
+                                class="w-4 h-4"
+                                {% if 'agua' in acta.servicios_basicos %}checked{% endif %}
+                                >
+                            <label for="serv-bas-agua"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Agua</label>
+                        </li>
+                        <li
+                            class="bg-[#FFAF00] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="serv-bas-desagüe" type="checkbox" value="desagüe" name="list-checkbox-serv-bas"
+                                class="w-4 h-4"
+                                {% if 'desagüe' in acta.servicios_basicos %}checked{% endif %}
+                                >
+                            <label for="serv-bas-desagüe"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Desagüe</label>
+                        </li>
+                        <li
+                            class="bg-[#FFAF00] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="serv-bas-energia-electrica" type="checkbox" value="energia-electrica"
+                                name="list-checkbox-serv-bas" class="w-4 h-4"
+                                {% if 'energia-electrica' in acta.servicios_basicos %}checked{% endif %}
+                                >
+                            <label for="serv-bas-energia-electrica"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Energia
+                                Electrica</label>
+                        </li>
+                        <li
+                            class="bg-[#FFAF00] flex items-center gap-x-2 px-2 py-4 border-b border-gray-300 sm:border-b-0 sm:border-r">
+                            <input id="serv-bas-internet-y-o-telefonia" type="checkbox" value="internet"
+                                name="list-checkbox-serv-bas" class="w-4 h-4"
+                                {% if 'internet' in acta.servicios_basicos %}checked{% endif %}
+                                >
+                            <label for="serv-bas-internet-y-o-telefonia"
+                                class="w-full font-gotham-bold text-sm font-medium text-gray-800 cursor-pointer hover:text-gray-500">Internet
+                                y/o telefonía</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 4.- BOCETO DEL PREDIO -->
+            <div class="hidden" id="part4">
+                <!-- BOCETO DEL PREDIO -->
+                <h1 class="font-bold text-sm mb-1 font-gotham-bold">4.- BOCETO DEL PREDIO</h1>
+
+                <div class="bg-white rounded-md p-5 my-5">
+                    <div class="mb-2">
+                        {% if archivos_acta.boceto_pdf %}
+                            <a href="{{ archivos_acta.boceto_pdf.url }}" target="_blank" class="text-blue-700 font-bold underline mt-2">Pdf actual</a>
+                        {% else %}
+                            <a href="#" class="text-red-700 font-bold underline mt-2">Sin pdf</a>
+                        {% endif %}
+                    </div>
+                    <label for="boceto-predio-pdf" class="font-bold">Suba un pdf:</label>
+                    <input type="file" name="boceto-predio-pdf" id="boceto-predio-pdf" accept=".pdf">
+                </div>
+                <!-- ¿HITOS CONSOLIDADOS?, ¿ACCESO A VIA?, ¿REQUIERE SUBDIVISIÓN?, ¿REQUIERE ALINEAMIENTO?, ¿APERTURA DE VIA?, ¿LIBRE DE RIESGO?, ¿REQ. TRANSF. DE TITULAR?, ¿LITIGIO, DENUNCIA, ETC? -->
+                <div class="flex flex-col gap-1 mb-2">
+                    <!-- ¿HITOS CONSOLIDADOS? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿HITOS
+                            CONSOLIDADOS?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="hito-consolidado-si" type="radio" value="si"
+                                    name="list-radio-hitos-consolidado" class="w-4 h-4"
+                                    {% if acta.hitos_consolidados == 'si' %}checked{% endif %}
+                                    >
+                                <label for="hito-consolidado-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="hito-consolidado-no" type="radio" value="no"
+                                    name="list-radio-hitos-consolidado" class="w-4 h-4"
+                                    {% if acta.hitos_consolidados == 'no' %}checked{% endif %}
+                                    >
+                                <label for="hito-consolidado-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿ACCESO A VIA? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿ACCESO
+                            A VIA?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="acceso-via-si" type="radio" value="si" name="list-radio-acceso-via"
+                                    class="w-4 h-4"
+                                    {% if acta.acceso_a_via == 'si' %}checked{% endif %}
+                                    >
+                                <label for="acceso-via-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="acceso-via-no" type="radio" value="no" name="list-radio-acceso-via"
+                                    class="w-4 h-4"
+                                    {% if acta.acceso_a_via == 'no' %}checked{% endif %}
+                                    >
+                                <label for="acceso-via-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ¿REQUIERE SUBDIVISIÓN? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿REQUIERE SUBDIVISIÓN?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="subdivion-si" type="radio" value="si" name="list-radio-subdivion"
+                                    class="w-4 h-4"
+                                    {% if acta.requiere_subdivision == 'si' %}checked{% endif %}
+                                    >
+                                <label for="subdivion-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="subdivion-no" type="radio" value="no" name="list-radio-subdivion"
+                                    class="w-4 h-4"
+                                    {% if acta.requiere_subdivision == 'no' %}checked{% endif %}
+                                    >
+                                <label for="subdivion-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿CUÁNTOS LOTES? -->
+                    <div class="w-full sm:w-1/3 {% if not acta.requiere_subdivision == 'si' %}hidden{% endif %}" id="container-numero-lotes">
+                        <label for="numero-lotes"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">¿CUÁNTOS
+                            LOTES?</label>
+                        <input type="number" id="numero-lotes" name="numero-lotes"
+                            class="w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="¿Cuántos lotes?"
+                            value="{{ acta.cantidad_lotes|default_if_none:'' }}"
+                            >
+                    </div>
+                    <!-- ¿REQUIERE ALINEAMIENTO? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿REQUIERE ALINEAMIENTO?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="alineamiento-si" type="radio" value="si" name="list-radio-alineamiento"
+                                    class="w-4 h-4"
+                                    {% if acta.requiere_alineamiento == 'si' %}checked{% endif %}
+                                    >
+                                <label for="alineamiento-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="alineamiento-no" type="radio" value="no" name="list-radio-alineamiento"
+                                    class="w-4 h-4"
+                                    {% if acta.requiere_alineamiento == 'no' %}checked{% endif %}
+                                    >
+                                <label for="alineamiento-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿APERTURA DE VIA? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿APERTURA DE VIA?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="apertura-via-si" type="radio" value="si" name="list-radio-apertura-via"
+                                    class="w-4 h-4"
+                                    {% if acta.apertura_de_via == 'si' %}checked{% endif %}
+                                    >
+                                <label for="apertura-via-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="apertura-via-no" type="radio" value="no" name="list-radio-apertura-via"
+                                    class="w-4 h-4"
+                                    {% if acta.apertura_de_via == 'no' %}checked{% endif %}
+                                    >
+                                <label for="apertura-via-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿LIBRE DE RIESGO? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿LIBRE
+                            DE RIESGO?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="libre-riesgo-si" type="radio" value="si" name="list-radio-libre-riesgo"
+                                    class="w-4 h-4"
+                                    {% if acta.libre_de_riesgo == 'si' %}checked{% endif %}
+                                    >
+                                <label for="libre-riesgo-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="libre-riesgo-no" type="radio" value="no" name="list-radio-libre-riesgo"
+                                    class="w-4 h-4"
+                                    {% if acta.libre_de_riesgo == 'no' %}checked{% endif %}
+                                    >
+                                <label for="libre-riesgo-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿REQ. TRANSF. DE TITULAR? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿REQ.
+                            TRANSF. DE TITULAR?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="transf-titular-si" type="radio" value="si" name="list-radio-transf-titular"
+                                    class="w-4 h-4"
+                                    {% if acta.req_transf_de_titular == 'si' %}checked{% endif %}
+                                    >
+                                <label for="transf-titular-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="transf-titular-no" type="radio" value="no" name="list-radio-transf-titular"
+                                    class="w-4 h-4"
+                                    {% if acta.req_transf_de_titular == 'no' %}checked{% endif %}
+                                    >
+                                <label for="transf-titular-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ¿LITIGIO, DENUNCIA, ETC? -->
+                    <div class="flex items-center gap-x-5">
+                        <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold w-1/2 sm:w-1/5">
+                            ¿LITIGIO, DENUNCIA, ETC?</h2>
+                        <div class="flex gap-x-1">
+                            <div class="flex items-center gap-x-1">
+                                <input id="litigio-denuncia-etc-si" type="radio" value="si"
+                                    name="list-radio-litigio-denuncia-etc" class="w-4 h-4"
+                                    {% if acta.litigio_denuncia == 'si' %}checked{% endif %}
+                                    >
+                                <label for="litigio-denuncia-etc-si" class="font-gotham-bold text-sm">SI</label>
+                            </div>
+                            <div class="flex items-center gap-x-1">
+                                <input id="litigio-denuncia-etc-no" type="radio" value="no"
+                                    name="list-radio-litigio-denuncia-etc" class="w-4 h-4"
+                                    {% if acta.litigio_denuncia == 'no' %}checked{% endif %}
+                                    >
+                                <label for="litigio-denuncia-etc-no" class="font-gotham-bold text-sm">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AREA SEGÚN EL TITULAR/REPRESENTANTE -->
+                <div class="mb-2 w-full sm:w-1/3">
+                    <label for="area-segun-titular-representante"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">ÁREA SEGÚN EL
+                        TITULAR/REPRESENTANTE</label>
+                    <div class="flex-1 flex items-center gap-2">
+                        <input type="number" id="area-segun-titular-representante" step="any" name="area-segun-titular-representante"
+                        class="flex-1 px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42]  focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                        placeholder="Área según el titular/presidente m2" value="{{ acta.area_segun_el_titular_representante|replace_commas }}" ><b class="w-fit">m<sup>2</sup></b>
+                        <!-- {{ acta.area_segun_el_titular_representante }} -->
+                    </div>
+                </div>
+
+                <!-- COMENTARIO ADIC.: -->
+                <div class="mb-4">
+                    <label for="comentario-adic"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">COMENTARIO
+                        ADIC.:</label>
+                    <textarea id="comentario-adic" rows="4" name="comentario1"
+                        class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                        placeholder="Comentario adic.:">{{ acta.comentario1 }}</textarea>
+                </div>
+            </div>
+            <!-- 5.- DEL LEVANTAMIENTO TOPOGRÁFICO: -->
+            <div class="hidden" id="part5">
+                <h1 class="font-bold text-sm mb-1 font-gotham-bold">5.- DEL LEVANTAMIENTO TOPOGRÁFICO:</h1>
+                <!-- CODIGO, HORA, N° PUNTOS -->
+                <div class="flex flex-col gap-x-2 sm:flex-row mb-4">
+                    <!-- CODIGO -->
+                    <div class="flex-1">
+                        <label for="codigo"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">CODIGO: FORMATO: M-456</label>
+                        <input type="text" id="codigo" name="codigo"
+                            class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="Codigo" value="{{ acta.codigo_dlt }}">
+                    </div>
+                    <!-- HORA -->
+                    <div class="flex-1">
+                        <label for="hora"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">HORA</label>
+                        <input type="time" id="hora" name="hora"
+                            class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="Hora" value="{{ acta.hora }}">
+                    </div>
+                    <!-- N° PUNTOS -->
+                    <div class="flex-1">
+                        <label for="numero-puntos"
+                            class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">N° DE
+                            PUNTOS LEVANTADOS</label>
+                        <input type="number" id="numero-puntos" name="numero-puntos"
+                            class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                            placeholder="N° de puntos levantados" value="{{ acta.n_punto|replace_commas }}">
+                    </div>
+                </div>
+
+                <!-- TIEMPO ATMOSFERICO -->
+                <div class="mb-2">
+                    <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold mb-2">TIEMPO ATMOSFERICO:
+                    </h2>
+                    <div class="flex flex-col sm:flex-row w-full">
+                        <div class="bg-yellow-300 p-2 flex items-center gap-x-1">
+                            <input id="soleado" type="radio" value="soleado" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4"
+                                {% if acta.tiempo_atmosferico == 'soleado' %}checked{% endif %}
+                                >
+                            <label for="soleado"
+                                class="font-gotham-bold text-sm block p-2"><i class="fa-solid fa-sun"></i> SOLEADO</label>
+                        </div>
+                        <div class="bg-blue-400 p-2 flex items-center gap-x-1">
+                            <input id="lluvioso" type="radio" value="lluvioso" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4"
+                                {% if acta.tiempo_atmosferico == 'lluvioso' %}checked{% endif %}
+                                >
+                            <label for="lluvioso"
+                                class="font-gotham-bold text-sm block p-2"><i class="fa-solid fa-cloud-rain"></i> LLUVIOSO</label>
+                        </div>
+                        <div class="bg-black p-2 flex items-center gap-x-1">
+                            <input id="torment" type="radio" value="torment" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4"
+                                {% if acta.tiempo_atmosferico == 'torment' %}checked{% endif %}
+                                >
+                            <label for="torment"
+                                class="font-gotham-bold text-sm block p-2 text-white"><i class="fa-solid fa-poo-storm"></i> TORMENT.</label>
+                        </div>
+                        <div class="bg-gray-400 p-2 flex items-center gap-x-1">
+                            <input id="nublado" type="radio" value="nublado" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4"
+                                {% if acta.tiempo_atmosferico == 'nublado' %}checked{% endif %}
+                                >
+                            <label for="nublado" class="font-gotham-bold text-sm block p-2"><i class="fa-solid fa-cloud"></i> NUBLADO</label>
+                        </div>
+                        <div class="bg-blue-200 p-2 flex items-center gap-x-1">
+                            <input id="neblinoso" type="radio" value="neblinoso" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4"
+                                {% if acta.tiempo_atmosferico == 'neblinoso' %}checked{% endif %}
+                                >
+                            <label for="neblinoso"
+                                class="font-gotham-bold text-sm block p-2"><i class="fa-solid fa-smog"></i> NEBLINOSO</label>
+                        </div>
+                        <div class="bg-white p-2 flex items-center gap-x-1">
+                            <input id="nevoso" type="radio" value="nevoso" name="list-radio-tiempo-atmosferico"
+                                class="w-4 h-4"
+                                {% if acta.tiempo_atmosferico == 'nevoso' %}checked{% endif %}
+                                >
+                            <label for="nevoso" class="font-gotham-bold text-sm block p-2"><i class="fa-solid fa-snowflake"></i> NEVOSO</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMENTARIOS/OBSERVACIONES: -->
+                <div class="mb-4">
+                    <label for="comentario-observaciones"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">COMENTARIOS/OBSERVACIONES:</label>
+                    <textarea id="comentario-observaciones" rows="4" name="comentario2"
+                        class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                        placeholder="Comentario/observaciones.">{{ acta.comentario2 }}</textarea>
+                </div>
+            </div>
+            <!-- 8.- ADICIONALES: -->
+            <div class="hidden" id="part8">
+                <h1 class="font-bold text-sm mb-2 font-gotham-bold">8.- ADICIONALES:</h1>
+                <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">
+                    SE
+                    ADJUNTA, TOMA FOTOGRAFICA DEL PREDIO:</h2>
+                <div class="p-5 mb-4 bg-white">
+                    <div class="mb-2">
+                        {% if archivos_acta.toma_predio_imagen %}
+                            <a href="{{ archivos_acta.toma_predio_imagen.url }}" target="_blank" class="text-blue-700 font-bold underline mt-2">Imagen actual</a>
+                        {% else %}
+                            <a href="#" class="text-red-700 font-bold underline mt-2">Sin Imagen</a>
+                        {% endif %}
+                    </div>
+                    <label for="toma-fotografica-predio-imagen" class="font-bold">Suba una imagen:</label>
+                    <input type="file" name="toma-fotografica-predio-imagen" id="toma-fotografica-predio-imagen" accept="image/png, image/jpeg">
+                </div>
+                <!-- casos -->
+                <div class="flex gap-2 mb-2">
+                    <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">CASOS:</h2>
+                    <div class="flex gap-x-1">
+                        <div class="flex items-center gap-x-1">
+                           <input id="casos-si" type="radio" value="si" name="list-radio-casos" class="w-4 h-4"
+                           {% if acta.casos_toma_predio == 'si' %}checked{% endif %}
+                           >
+                           <label for="casos-si" class="font-gotham-bold text-sm">SI</label>
+                        </div>
+                        <div class="flex items-center gap-x-1">
+                           <input id="casos-no" type="radio" value="no" name="list-radio-casos" class="w-4 h-4"
+                           {% if acta.casos_toma_predio == 'no' %}checked{% endif %}
+                           >
+                           <label for="casos-no" class="font-gotham-bold text-sm">NO</label>
+                        </div>
+                     </div>
+                </div>
+                <!-- casos si -->
+                <div id="container-casos" class="{% if acta.casos_toma_predio == 'no' %}hidden{% endif %}">
+                    <hr class="h-px bg-red-700 border-0 mb-2">
+                    <h2 class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold mb-2">DOCUMENTOS</h2>
+                    <div class="p-5 mb-4 bg-white">
+
+                        <div class="mb-2">
+                            {% if archivos_acta.documento_predio_pdf %}
+                                <a href="{{ archivos_acta.documento_predio_pdf.url }}" target="_blank" class="text-blue-700 font-bold underline mt-2">Pdf actual</a>
+                            {% else %}
+                                <a href="#" class="text-red-700 font-bold underline mt-2">Sin Pdf</a>
+                            {% endif %}
+                        </div>
+                        <label for="documentos-casos-si-pdf" class="font-bold">Suba un pdf:</label>
+                        <input type="file" name="documentos-casos-si-pdf" id="documentos-casos-si-pdf" accept=".pdf">
+                    </div>
+                    <div class="mb-2">
+                        <label for="descripcion-documentos-casos-si" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">DESCRIPCIÓN</label>
+                        <textarea id="descripcion-documentos-casos-si" name="descripcion-documentos-casos-si" rows="4" class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2" placeholder="Descripción">{{ acta.descripcion_toma_predio }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 9.- FIRMA DEL OPERADOR TOPOGRÁFICO, REPRESENTANTE DE LA COMISIÓN Y SUPERVISOR DE CAMPO -->
+            <div class="hidden" id="part9">
+                <h1 class="font-bold text-sm mb-1 font-gotham-bold">9.- FIRMA DEL OPERADOR TOPOGRÁFICO, REPRESENTANTE DE
+                    LA COMISIÓN Y SUPERVISOR DE CAMPO</h1>
+                <!-- <h1 class="font-bold text-sm mb-1 font-gotham-bold">9.- FIRMA DE LOS ACTORES INTERVINIENTES:</h1> -->
+
+                <!-- 9.- FIRMA DEL OPERADOR TOPOGRÁFICO, REPRESENTANTE DE LA COMISIÓN Y SUPERVISOR DE CAMPO -->
+                <div class="p-5 mb-4 bg-white">
+                    <div class="mb-2">
+                        {% if archivos_acta.archivo_firmas_pdf %}
+                            <a href="{{ archivos_acta.archivo_firmas_pdf.url }}" target="_blank" class="text-blue-700 font-bold underline mt-2">Pdf actual</a>
+                        {% else %}
+                            <a href="#" class="text-red-700 font-bold underline mt-2">Sin pdf</a>
+                        {% endif %}
+                    </div>
+                    <label for="firmas-operador-topografo-representante-comision-supervisor-de-campo-pdf" class="font-bold">Suba un pdf:</label>
+                    <input type="file" name="firmas-operador-topografo-representante-comision-supervisor-de-campo-pdf" id="firmas-operador-topografo-representante-comision-supervisor-de-campo-pdf" accept=".pdf">
+                </div>
+                <hr class="h-px bg-red-700 border-0">
+
+                <!-- COMENTARIOS/OBSERVACIONES: -->
+                <div class="mb-2">
+                    <label for="firma-actores-intervinientes-comentario-observaciones"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">COMENTARIOS/OBSERVACIONES:</label>
+                    <textarea id="firma-actores-intervinientes-comentario-observaciones" rows="4"
+                    name="firma-actores-intervinientes-comentario-observaciones"
+                        class="block w-full px-4 py-2 border-2 text-gray-700 shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] hover:border-2"
+                        placeholder="Comentario/observaciones.">{{ acta.comentario3 }}</textarea>
+                </div>
+
+            </div>
+            <!-- next && prev -->
+            <div class="flex justify-start sm:justify-center gap-4 sm:end hidden">
+
+                <div>
+                    <button type="button"
+                    class="mb-2 bg-[#008B8B] font-gotham-bold p-2 rounded text-white hover:bg-[#519494]"
+                    id="btn-prev">
+                    << Anterior</button>
+                    <button type="button"
+                        class="mb-2 bg-[#008B8B] font-gotham-bold p-2 rounded text-white hover:bg-[#519494]"
+                        id="btn-next">Siguiente >></button>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        <div class="mx-auto p-4 max-w-7xl flex gap-4 bg-[#EAEBEB] mb-4">
+            <a href="/pos/crm/acta/"
+                class="mb-2 bg-[#8b0031] font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]"
+                id="btn-cancelar"><i class="fas fa-times"></i> Cancelar</a>
+            <button type="submit" class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]"
+                id="btn-update"><i class="fas fa-save"></i> Actualizar</button>
+        </div>
+    </form>
+    </div>
+    <script src="{% static 'crm/acta/js/selectors.js' %}"></script>
+    <script src="{% static 'crm/acta/js/navbar.js' %}"></script>
+    <script src="{% static 'crm/acta/js/init-data-update.js' %}"></script>
+    <script src="{% static 'crm/acta/js/multi-step-update.js' %}"></script>
+    <script src="{% static 'crm/acta/js/validators.js' %}"></script>
+    <!-- <script src="{% static 'crm/acta/js/modal-titulares-representantes.js' %}"></script> -->
+    <script src="{% static 'crm/acta/js/update.js' %}"></script>
+    <!-- <script src="{% static 'crm/acta/js/conaforp-acta-2.js' %}"></script> -->
+</body>
+
+</html>

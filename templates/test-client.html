@@ -1,0 +1,134 @@
+{% extends 'list.html' %}
+{% load widget_tweaks %}
+{% load security_extras %}
+{% load static %}
+{% block head_list %}
+    <!--Formvalidation Libs-->
+    <link rel="stylesheet" href="{% static 'lib/formvalidation-1.8.0/css/formValidation.min.css' %}">
+    <script src="{% static 'lib/formvalidation-1.8.0/js/es6-shim.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/FormValidation.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/plugins/Bootstrap.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/locales/es_ES.min.js' %}"></script>
+    <!--Block head form-->
+    {% block head_form %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+    <form class="form" method="post" action="." enctype="multipart/form-data" id="frmForm"
+          data-url="{{ list_url }}">
+        <div class="card {{ dshboard.card }}">
+            <div class="card-header">
+                <h3 class="card-title">
+                    {% if action == 'add' %}
+                        <i class="fas fa-plus"></i>
+                    {% else %}
+                        <i class="fas fa-edit"></i>
+                    {% endif %}
+                    {{ title }}
+                </h3>
+            </div>
+            {% comment %} <div class="card-body" style="display: block;">
+                <div class="container-fluid">
+                    <input type="hidden" name="action" id="action" value="{{ action }}">
+                    {% csrf_token %}
+                    {# Forms Visible #}
+                    {% for field in form.visible_fields %}
+                        <div class="form-group">
+                            <label>{{ field.label }}:</label>
+                            {% if field|is_checkbox %}
+                                 <br>{{ field }}
+                            {% else %}
+                                {{ field|add_class:'form-control'|attr:"autocomplete:off" }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div> {% endcomment %}
+            <div class="card-body" style="display: block;">
+                <div class="container-fluid">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" id="action" value="{{ action }}">
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos:</label>
+                        <input 
+                            type="text" 
+                            value="{% if action == 'edit' %}{{ titular.apellidos }}{% endif %}" 
+                            class="form-control" 
+                            id="apellidos" 
+                            name="apellidos" 
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="nombres">Nombres:</label>
+                        <input 
+                            type="text" 
+                            value="{% if action == 'edit' %}{{ titular.nombres }}{% endif %}" 
+                            class="form-control" 
+                            id="nombres" 
+                            name="nombres" 
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="estado_civil">Estado Civil:</label>
+                        <input 
+                            type="text" 
+                            value="{% if action == 'edit' %}{{ titular.estado_civil }}{% endif %}" 
+                            class="form-control" 
+                            id="estado_civil" 
+                            name="estado_civil" 
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_doc">Tipo de Documento:</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            value="{% if action == 'edit' %}{{ titular.tipo_doc }}{% endif %}" 
+                            id="tipo_doc" 
+                            name="tipo_doc" 
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="num_doc">Número de Documento:</label>
+                        <input 
+                            type="text" 
+                            value="{% if action == 'edit' %}{{ titular.num_doc }}{% endif %}"
+                            class="form-control" 
+                            id="num_doc" 
+                            name="num_doc" 
+                            autocomplete="off"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input 
+                                class="form-check-input" 
+                                type="checkbox" id="copia_doc_identidad" name="copia_doc_identidad"
+                                {% if action == 'edit' and titular.copia_doc_identidad %} checked {% endif %}
+                            >
+                            <label class="form-check-label" for="copia_doc_identidad">¿Cuenta con copia de Documento de Identidad</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            {% block box_footer %}
+                <div class="card-footer">
+                    {% block buttons %}
+                        <button type="submit" class="btn btn-primary btn-flat">
+                            <i class="fas fa-save"></i> Guardar registro
+                        </button>
+                        <a href="{{ list_url }}" class="btn btn-danger btn-flat">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    </form>
+{% endblock %}

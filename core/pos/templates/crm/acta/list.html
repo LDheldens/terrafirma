@@ -1,0 +1,26 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+    <link href="{% static 'crm/titular/css/modal.css' %}" rel="stylesheet">
+    <script src="{% static 'crm/acta/js/list.js' %}"></script>
+    <script src="{% static 'crm/titular/js/modal.js' %}"></script>
+    <script src="{% static 'crm/titular/js/validacion-titular.js' %}"></script>
+{% endblock %}
+
+{% block columns %}
+    <th class="text-center">Titular</th>
+    <th>Número - titulares</th>
+    <th class="text-center">Whatsapp</th>
+    <th>Referencia - predio</th>
+    <th>Pocentaje - avance</th>
+    <th class="text-center">Opciones</th>
+
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+
+{% block javascript_list %}
+
+{% endblock %}

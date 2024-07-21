@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'css/tailwindcss/output.css' %}" rel="stylesheet">
+    <link href="{% static 'css/tailwindcss/conaford.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e00c278a93.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+
+/* .swal2-html-container {
+  max-height: 400px;
+  overflow-y: auto;
+} */
+
+.swal2-html-container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+.swal2-actions {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+</style>
+<body>
+    <!-- html -->
+    <div id="main">
+    <!-- <div class="hidden" id="main"> -->
+        <!-- navbar -->
+        {% include 'hztheader-tailwind.html' %}
+        
+        <!-- main -->
+        <div class="md:container md:mx-auto bg-[#EAEBEB] w-full p-4 mb-4 mt-4">
+
+            <header>
+                <!-- border-2 rounded  -->
+                <h1 class="font-bold text-center text-2xl mb-4 font-gotham-bold">
+                    COLINDANTES
+                </h1>
+                <!-- linea -->
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-emerald-200">
+                    <div style="width: 10%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
+                    </div>
+                    <div style="width: 15%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500">
+                    </div>
+                    <div style="width: 25%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500">
+                    </div>
+                </div>
+            </header>
+
+        <!-- <form method="post" id="form_colindantes" enctype="multipart/form-data"> -->
+            <div class="relative bg-white my-5 text-center max-w-[280px] p-3 rounded  mx-auto ">
+                <label class="text-gray-500 mb-2 font-bold block" for="codigo_predio">
+                    Busque el predio por su código:
+                </label>
+                <input id="codigo_acta" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md w-full shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" type="text" placeholder="Ingrese un código">
+                <ul class="absolute border hidden border-cyan-300 p-2 bg-slate-200 w-full z-[1] right-0 left-0 rounded buscador-codigo">
+
+                </ul>
+            </div>
+            <div class="flex sm:flex-row flex-col sm:w-1/2 w-full gap-2 mb-2">
+                <div class="flex-1">
+                    <label for="area-levantamiento" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Área segun levantamiento</label>
+                    <input type="number" id="area-levantamiento" name="area-levantamiento" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Área segun levantamiento">
+                    <p></p>
+                </div>
+                <div class="flex-1">
+                    <label for="perimetro-levantamiento" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Perimetro segun levantamiento</label>
+                    <input type="number" id="perimetro-levantamiento" name="perimetro-levantamiento" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Área segun levantamiento">
+                </div>
+            </div>
+            <div class="relative  shadow-md sm:rounded-lg bg-white p-4  mb-4">
+                <div class="mb-2 py-2">
+                    <h2 class="text-sm text-gray-700 font-bold">COLINDANTES</h2>
+                </div>
+                <div class="overflow-y-auto">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                        <thead class="text-xs text-center text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Frente
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                   Medida
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Derecha
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Medida
+                                </th>
+
+                                <th scope="col" class="px-6 py-3">
+                                    Izquierda
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Medida
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Fondo
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Medida
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center" id="colindantes-container">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 py-2 flex justify-end">
+                    <button type="button" id="btn-agregar-colindantes"
+                        class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]">
+                        Añadir Colindante <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex sm:flex-row flex-col sm:w-1/2 w-full gap-2 mb-2">
+                <div class="flex-1">
+                    <label for="numero-manzana" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Numero de manzana</label>
+                    <input type="text" id="numero-manzana" name="numero-manzana" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Área segun levantamiento">
+                    <p>
+
+                    </p>
+                </div>
+                <div class="flex-1">
+                    <label for="numero-lote" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Numero de lote</label>
+                    <input type="text" id="numero-lote" name="numero-lote" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Área segun levantamiento">
+                    <p>
+
+                    </p>
+                </div>
+            </div>
+            
+        <!-- </form> -->
+    </div>
+    <!-- footer -->
+    <div class="mx-auto p-4 max-w-7xl flex gap-4 bg-[#EAEBEB] mb-4">
+        <a href="{{list_url}}"
+            class="mb-2 bg-[#8b0031] font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]"
+            id="btn-cancelar"><i class="fas fa-times"></i> Cancelar</a>
+        <button type="submit" class="mb-2 bg-[#003c8b] registrar-uffit font-gotham-bold p-2 rounded text-white hover:bg-[#355887]"
+            id="btn-create"><i class="fas fa-save"></i> Agregar</button>
+    </div>
+    <!-- VENTANA MODAL XD-->
+    <section class="modal-ufit hidden bg-black bg-opacity-50 z-10 absolute top-0 bottom-0 left-0 right-0  justify-center items-center">
+        <form action="" id="form-ufit">
+            <div class="p-5 max-w-[500px] w-full bg-white rounded-md">
+                <h3 class="text-center text-gray-500 text-xl font-bold my-2">Registro de colindancia</h3>
+                <div id="contenedor-inputs" class="flex flex-col items-start flex-wrap gap-2">
+                    <div id="contenedor-frente" class="w-full bg-slate-200 p-1 rounded contenedor-lado">
+                        <div class="flex gap-2">
+                            <div class="w-2/3">
+                                <label for="frente" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Frente</label>
+                                <input type="text" id="frente" name="frente"
+                                class="text-sm w-full p-2 text-gray-700 border-2 border-black shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                placeholder="Frente">
+                            </div>
+                            <div class="w-1/3">
+                                <label class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold" for="cantidad-tramos1">N* de tramos:</label>
+                                <input id="cantidad-tramos1" name="cantidad-tramos1" class="text-sm w-full p-2 text-gray-700 border-2 border-black shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] input-cantidad" type="number" placeholder="Cantidad de tramos">
+                                <button type="button" class="btn-aceptar w-full bg-purple-400 my-1 p-1 text-white font-bold rounded hover:bg-purple-600">
+                                    Aceptar
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div id="contenedor-derecha" class="w-full bg-slate-200 p-1 rounded contenedor-lado">
+                        <div class="flex gap-2">
+                            <div class="w-2/3">
+                                <label for="derecha" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Derecha</label>
+                                <input type="text" id="derecha" name="derecha"
+                                class="text-sm w-full p-2 text-gray-700 border-2 border-black shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                placeholder="Derecha">
+                            </div>
+                            <div class="w-1/3">
+                                <label class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold" for="cantidad-tramos2">N* de tramos:</label>
+                                <input id="cantidad-tramos2" name="cantidad-tramos2" class="text-sm w-full p-2 text-gray-700 border-2 border-black shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] input-cantidad" type="number" placeholder="Cantidad de tramos">
+                                <button type="button" class="btn-aceptar w-full bg-purple-400 my-1 p-1 text-white font-bold rounded hover:bg-purple-600">
+                                    Aceptar
+                                </button>
+                            </div>
+                        </div>  
+                        
+                    </div>
+                    <div id="contenedor-izquierda" class="w-full  bg-slate-200 p-1 rounded contenedor-lado">
+                        <div class="flex gap-2">
+                            <div class="w-2/3">
+                                <label for="izquierda" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Izquierda</label>
+                                <input type="text" id="izquierda" name="izquierda"
+                                class="text-sm w-full p-2 text-gray-700 border-2 border-black shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                placeholder="Izquierda">
+                            </div>
+                            <div class="w-1/3">
+                                <label class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold" for="cantidad-tramos3">N* de tramos:</label>
+                                <input id="cantidad-tramos3" name="cantidad-tramos3" class="text-sm w-full p-2 text-gray-700 border-2 border-black shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] input-cantidad" type="number" placeholder="Cantidad de tramos">
+                                <button type="button" class="btn-aceptar w-full bg-purple-400 my-1 p-1 text-white font-bold rounded hover:bg-purple-600">
+                                    Aceptar
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div id="contenedor-fondo" class="w-full bg-slate-200 p-1 rounded contenedor-lado">
+                        <div class="flex gap-2">
+                            <div class="w-2/3">
+                                <label for="fondo" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Fondo</label>
+                                <input type="text" id="fondo" name="fondo"
+                                    class="text-sm w-full p-2 text-gray-700 border-2 border-black shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                                    placeholder="Fondo">
+                            </div>
+                            <div class="w-1/3">
+                                <label class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold" for="cantidad-tramos4">N* de tramos:</label>
+                                <input id="cantidad-tramos4" name="cantidad-tramos4" class="text-sm w-full p-2 text-gray-700 border-2 border-black shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42] input-cantidad" type="number" placeholder="Cantidad de tramos">
+                                <button type="button" class="btn-aceptar w-full bg-purple-400 my-1 p-1 text-white font-bold rounded hover:bg-purple-600">
+                                    Aceptar
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                
+                <div class="my-2">
+                    <button type="button"
+                        class="bg-[#8b0031] btn-cerrar-modal font-gotham-bold p-2 rounded text-white hover:bg-[#6d3b4c]"
+                        id="btn-cancelar"><i class="fas fa-times"></i> Cancelar</button>
+                    <button type="button" id="btn-agregar-colindancia" class=" bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]"
+                        id="btn-create"><i class="fas fa-save"></i> Agregar</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <script src="{% static 'crm/ufit/js/main.js' %}"></script>
+    <script src="{% static 'crm/ficha_udd/js/navbar.js' %}"></script>
+    <!-- <script src="{% static 'crm/colindantes/js/create.js' %}"></script> -->
+</body>
+
+</html>

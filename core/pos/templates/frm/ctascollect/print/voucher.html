@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voucher de Pago</title>
+    <style>
+        @page {
+            width: 58mm;
+            height: {{ height }}mm;
+            margin: 0;
+        }
+
+        body {
+            font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            font-size: 8px;
+            color: black !important;
+        }
+
+        p {
+            font-size: 5px;
+        }
+
+        .content {
+            width: 58mm;
+            height: {{ height }}mm;
+            padding: 10px;
+        }
+
+
+        .client {
+            font-size: 5px;
+            margin-top: 0;
+            padding-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .name-company {
+            margin-top: 10px;
+            font-size: 9px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .desc-company {
+            font-size: 5px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .border-dotted {
+            border-top-style: dotted;
+            border-bottom-style: dotted;
+        }
+
+        .ruc {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .table {
+            font-size: 5px;
+            color: black;
+        }
+
+        .table td, .table th {
+            padding: 0;
+            color: black;
+        }
+
+        .img-logo {
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+
+    <img src="{{ company.get_image }}" class="img-fluid d-block mx-auto img-logo">
+    <h1 class="name-company">{{ company.name }}</h1>
+    <p class="text-center desc-company">
+        {{ company.address }}<br>
+        Celular: {{ company.mobile }}<br>
+        Teléfono: {{ company.phone }}<br>
+        Web: {{ company.website }}<br>
+    </p>
+    <p class="ruc border-dotted">
+        RUC N°: {{ company.ruc }}
+    </p>
+    <p class="client">
+        <b>Cajero:</b> {{ payment.ctascollect.sale.employee.get_full_name }}<br>
+        <b>Cliente:</b> {{ payment.ctascollect.sale.client.user.get_full_name }}<br>
+        <b>Nº de pago:</b> 00{{ payment.paymentNumber }}<br>
+        <b>Número de DNI:</b> {{ payment.ctascollect.sale.client.user.dni }}<br>
+        <b>Fecha de pago:</b> {{ payment.date_joined|date:'c' }}<br>
+        <b>Valor pagado:</b> S/. {{ payment.valor }}<br>
+        <b>Saldo restante:</b> S/. {{ payment.ctascollect.saldo }}<br>
+    </p>
+    <p class="text-center border-dotted p-1">
+        ¡Gracias por su preferencia!<br>
+        Una vez que usted ha recibido el pedido<br>
+        No hay derecho a reclamo ni devolución del producto<br>
+        Que tenga un excelente día
+    </p>
+</div>
+</body>
+</html>

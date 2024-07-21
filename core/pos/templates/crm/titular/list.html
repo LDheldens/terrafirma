@@ -1,0 +1,23 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+   <script src="{% static 'crm/titular/js/list.js' %}"></script>
+{% endblock %}
+
+{% block columns %}
+    <th>Nro</th>
+    <th>Apellidos</th>
+    <th>Nombres</th>
+    <th>Número de documento</th>
+    <th>Estado civil</th>
+    <th class="text-center">Opciones</th>
+
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+
+{% block javascript_list %}
+
+{% endblock %}

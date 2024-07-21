@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{% static 'css/tailwindcss/output.css' %}" rel="stylesheet">
+    <link href="{% static 'css/tailwindcss/conaford.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e00c278a93.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<style>
+
+/* .swal2-html-container {
+  max-height: 400px;
+  overflow-y: auto;
+} */
+
+.swal2-html-container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+.swal2-actions {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+</style>
+<body>
+    <!-- html -->
+    <div id="main">
+    <!-- <div class="hidden" id="main"> -->
+        <!-- navbar -->
+        {% include 'hztheader-tailwind.html' %}
+        
+        <!-- main -->
+        <div class="md:container md:mx-auto bg-[#EAEBEB] w-full p-4 mb-4 mt-4">
+
+            <header>
+                <!-- border-2 rounded  -->
+                <h1 class="font-bold text-center text-2xl mb-4 font-gotham-bold">
+                    COLINDANTES
+                </h1>
+                <!-- linea -->
+                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-emerald-200">
+                    <div style="width: 10%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
+                    </div>
+                    <div style="width: 15%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500">
+                    </div>
+                    <div style="width: 25%"
+                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500">
+                    </div>
+                </div>
+            </header>
+
+        <!-- <form method="post" id="form_colindantes" enctype="multipart/form-data"> -->
+
+            <div class="relative  shadow-md sm:rounded-lg bg-white p-4  mb-4">
+                <div class="mb-2 py-2">
+                    <h2 class="text-sm text-gray-700 font-bold">COLINDANTES</h2>
+                </div>
+                <div class="overflow-y-auto">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                        <thead class="text-xs text-center text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Codigo Predio
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Nombre representante
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Frente
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Fondo
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Izquierda
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Derecha
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Área segun documento
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Área segun levantamiento
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Diferencias
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Contingencia
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Indicacion
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Opciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center" id="colindantes-container">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 py-2 flex justify-end">
+                    <button type="button" id="btn-agregar-colindantes"
+                        class="mb-2 bg-[#003c8b] font-gotham-bold p-2 rounded text-white hover:bg-[#355887]">
+                        Añadir Colindante <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex sm:flex-row flex-col sm:w-1/2 w-full gap-2 mb-2">
+                <div class="flex-1">
+                    <label for="area-documento" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Área segun documento</label>
+                    <input type="text" id="area-documento" name="area-documento" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Área segun documento">
+                </div>
+                <div class="flex-1">
+                    <label for="area-levantamiento" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Área segun levantamiento</label>
+                    <input type="text" id="area-levantamiento" name="area-levantamiento" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Área segun levantamiento">
+                </div>
+                <div class="flex-1">
+                    <label for="diferencias" class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Diferencias</label>
+                    <input type="text" id="diferencias" name="diferencias" class="mt-1 w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]" placeholder="Diferencias">
+                </div>
+            </div>
+            
+            <div class="flex sm:flex-row flex-col sm:w-1/2 w-full gap-2">
+                <div class="w-full sm:w-[40%]">
+                    <label for="Contingencia"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Contingencia</label>
+                    <select id="Contingencia" name="Contingencia"
+                        class="w-full border-2 border-gray-950 px-4 py-2 pr-8 rounded shadow-sm leading-tight focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]">
+                        <option value="">Opción</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                    </select>
+                </div>
+                <div class="w-full sm:w-[60%]">
+                    <label for="indicacion"
+                        class="text-sm font-medium text-gray-700 asterisk-icon font-gotham-bold">Indicación</label>
+                    <input type="text" id=indicacion" name=indicacion"
+                        class="w-full px-4 py-2 text-gray-700 border-2 border-gray-950 rounded-md shadow-sm focus:outline-none focus:border-[#A7CF42] focus:ring focus:ring-[#D8E3C2] hover:border-[#A7CF42]"
+                        placeholder="Indicación">
+
+                </div>
+            </div>
+        <!-- </form> -->
+    </div>
+    <!-- footer -->
+    
+
+    <script src="{% static 'crm/colindantes/js/selectors.js' %}"></script>
+    <script src="{% static 'crm/colindantes/js/navbar.js' %}"></script>
+    <!-- <script src="{% static 'crm/colindantes/js/init-data.js' %}"></script> -->
+    <script src="{% static 'crm/colindantes/js/validators.js' %}"></script>
+    <script src="{% static 'crm/colindantes/js/modal.js' %}"></script>
+    <script src="{% static 'crm/colindantes/js/create.js' %}"></script>
+</body>
+
+</html>
