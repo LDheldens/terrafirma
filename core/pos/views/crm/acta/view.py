@@ -16,6 +16,8 @@ from datetime import date, datetime
 from django.db.models import Q
 from django.forms.models import model_to_dict
 
+from django.core.serializers.json import DjangoJSONEncoder
+
 # vistas creadas por Daniel
 class ActaListView(TemplateView):
     template_name = 'crm/acta/list.html'
@@ -382,6 +384,18 @@ class PredioSearchView(View):
         for acta in resultados:
             acta_dict = model_to_dict(acta)
             acta_dict['posesion_informal_nombre'] = acta.posesion_informal.denominacion_segun_inei if acta.posesion_informal else None
+            
+            # Obtener el primer titular y solo incluir nombres, apellidos y num_doc
+            primer_titular = acta.titulares.first()
+            if primer_titular:
+                acta_dict['primer_titular'] = {
+                    'nombres': primer_titular.nombres,
+                    'apellidos': primer_titular.apellidos,
+                    'num_doc': primer_titular.num_doc
+                }
+            else:
+                acta_dict['primer_titular'] = {}
+            
             resultados_data.append(acta_dict)
 
-        return JsonResponse(resultados_data, safe=False)
+        return JsonResponse(resultados_data, safe=False, encoder=DjangoJSONEncoder)

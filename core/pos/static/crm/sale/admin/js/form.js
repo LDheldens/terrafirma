@@ -988,7 +988,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             if (data.length>1) {
                 predioBtn.classList.add('border-item')
             }
-            predioBtn.textContent = predio.posesion_informal_nombre+ ' / ' +predio.codigo_predio;
+            predioBtn.textContent = generarTexto(predio)
             predioBtn.onclick = function() {
                 id_predio = predio.id
                 resultadosDiv.classList.add('d-none')
@@ -996,6 +996,14 @@ document.addEventListener('DOMContentLoaded',()=>{
             };
             resultadosDiv.appendChild(predioBtn);
         });
+    }
+    function generarTexto(predio){
+        const texto = `${predio.posesion_informal_nombre} / ${predio.codigo_predio} `
+        const titular = `${predio.primer_titular.nombres} ${predio.primer_titular.apellidos} / ${predio.primer_titular.num_doc}`
+        if (predio.primer_titular.nombres) {
+            return `${texto} | ${titular}`
+        }
+        return texto
     }
     function getCookie(name) {
         let cookieValue = null;
