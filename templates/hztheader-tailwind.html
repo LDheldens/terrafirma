@@ -143,29 +143,27 @@
                         {% if request.session.group %}
                             {% for mt in request.session.group.id|getmoduletype %}
                                 {% if mt.name_menu == "project"  %}
-                                    {% if  mt.name != 'UFIN' and mt.name != 'UFIT'  %}
-                                    <li class="relative group">
-                                        <button type="button" id="{{ mt.id }}"
-                                            class="flex w-full items-center justify-between px-4 py-2 hover:bg-gray-100">
-                                            <div>
-                                                <i class="{{ mt.icon }}"></i> {{ mt.name }}
-                                            </div>
-                                            <i class="fa-solid fa-chevron-right"></i>
-                                        </button>
-                                        <div
-                                            class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                                            <ul class="py-2 text-sm text-gray-700" id="mt.id">
-                                                {% for m in mt.get_modules_vertical %}
-                                                    <li>
-                                                        <a  href="{{ m.url }}" class="block px-4 py-2 hover:bg-gray-100">
-                                                            <i class="{{ m.icon }}"></i> {{ m.name }}
-                                                        </a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
+                                <li class="relative group">
+                                    <button type="button" id="{{ mt.id }}"
+                                        class="flex w-full items-center justify-between px-4 py-2 hover:bg-gray-100">
+                                        <div>
+                                            <i class="{{ mt.icon }}"></i> {{ mt.name }}
                                         </div>
-                                    </li>
-                                    {% endif %}
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </button>
+                                    <div
+                                        class="z-10 absolute hidden group-hover:block top-0 left-44 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <ul class="py-2 text-sm text-gray-700" id="mt.id">
+                                            {% for m in mt.get_modules_vertical %}
+                                                <li>
+                                                    <a  href="{{ m.url }}" class="block px-4 py-2 hover:bg-gray-100">
+                                                        <i class="{{ m.icon }}"></i> {{ m.name }}
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </li>
                                 {% endif %}
                                 
                             {% endfor %}

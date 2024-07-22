@@ -118,23 +118,21 @@
                         {% if request.session.group %}
                             {% for mt in request.session.group.id|getmoduletype %}
                                 {% if mt.name_menu == "project" %}
-                                    {% if mt.name != 'UFIN' and mt.name != 'UFIT' %}
-                                        <li class="dropdown-submenu dropdown-hover">
-                                            <a id="dropdownSubMenu{{ mt.id }}" href="#" role="button" data-toggle="dropdown"
-                                               aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
-                                                <i class="{{ mt.icon }}"></i> {{ mt.name }}
-                                            </a>
-                                            <ul aria-labelledby="dropdownSubMenu{{ mt.id }}" class="dropdown-menu border-0 shadow">
-                                                {% for m in mt.get_modules_vertical %}
-                                                    <li>
-                                                        <a tabindex="-1" href="{{ m.url }}" class="dropdown-item">
-                                                            <i class="{{ m.icon }}"></i> {{ m.name }}
-                                                        </a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </li>
-                                    {% endif %}
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="dropdownSubMenu{{ mt.id }}" href="#" role="button" data-toggle="dropdown"
+                                       aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
+                                        <i class="{{ mt.icon }}"></i> {{ mt.name }}
+                                    </a>
+                                    <ul aria-labelledby="dropdownSubMenu{{ mt.id }}" class="dropdown-menu border-0 shadow">
+                                        {% for m in mt.get_modules_vertical %}
+                                            <li>
+                                                <a tabindex="-1" href="{{ m.url }}" class="dropdown-item">
+                                                    <i class="{{ m.icon }}"></i> {{ m.name }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}

@@ -70,17 +70,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const pdfFile = pdfInput.files[0];
-        if (!pdfFile || pdfFile.type !== 'application/pdf') {
-            markAsInvalid('pdf_documento');
-            isValid = false;
-        } else {
-            markAsValid('pdf_documento');
-            isValid = true;
-        }
+        // if (!pdfFile || pdfFile.type !== 'application/pdf') {
+        //     markAsInvalid('pdf_documento');
+        //     isValid = false;
+        // } else {
+        //     markAsValid('pdf_documento');
+        //     isValid = true;
+        // }
         if(isValid){
             const formData = new FormData(formTitular);
 
-            formData.append('pdf_documento', pdfInput.files[0]);
+            if (pdfFile) {
+                formData.append('pdf_documento', pdfInput.files[0]);
+            }
             formData.append('acta_id', actaId); 
             // Configurar opciones para la solicitud Fetch
             const options = {
