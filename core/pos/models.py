@@ -57,7 +57,7 @@ class Company(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='Nombre')
-    inventoried = models.BooleanField(default=True, verbose_name='¿Es inventariado?')
+    inventoried = models.BooleanField(default=False, verbose_name='¿Es inventariado?')
 
     def __str__(self):
         return '{} / {}'.format(self.name, self.get_inventoried())
@@ -206,7 +206,8 @@ class Sale(models.Model):
         self.subtotal = subtotal
         self.total_igv = self.subtotal * float(self.igv)
         self.total_dscto = self.subtotal * float(self.dscto)
-        self.total = float(self.subtotal) - float(self.total_dscto) + float(self.total_igv)
+        # self.total = float(self.subtotal) - float(self.total_dscto) + float(self.total_igv)
+        self.total = float(self.subtotal) - float(self.total_dscto)
         self.save()
 
     def delete(self, using=None, keep_parents=False):

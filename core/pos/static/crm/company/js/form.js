@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     validators: {
                         notEmpty: {},
                         stringLength: {
-                            min: 13,
+                            min: 11,
                         },
                         digits: {},
                     }

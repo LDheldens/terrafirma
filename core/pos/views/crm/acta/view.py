@@ -368,18 +368,20 @@ class ActaDeleteView(DeleteView):
 class PredioSearchView(View):
     def post(self, request):
         data = json.loads(request.body)
-
-        query = data['q']
+        query = data.get('q', '')
 
         resultados = []
         if query:
-
             resultados = Acta.objects.filter(
                 Q(titulares__num_doc__icontains=query) |
                 Q(codigo_predio__icontains=query) |
                 Q(posesion_informal__denominacion_segun_inei__icontains=query)
             ).distinct()
 
-        resultados_data = [model_to_dict(acta) for acta in resultados]
+        resultados_data = []
+        for acta in resultados:
+            acta_dict = model_to_dict(acta)
+            acta_dict['posesion_informal_nombre'] = acta.posesion_informal.denominacion_segun_inei if acta.posesion_informal else None
+            resultados_data.append(acta_dict)
 
         return JsonResponse(resultados_data, safe=False)

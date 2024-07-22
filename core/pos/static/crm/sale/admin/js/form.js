@@ -50,7 +50,7 @@ var vents = {
         vents.details.dscto = parseFloat($('input[name="dscto"]').val());
         vents.details.total_dscto = vents.details.subtotal * (vents.details.dscto / 100);
         vents.details.total_igv = vents.details.subtotal * (vents.details.igv / 100);
-        vents.details.total = vents.details.subtotal + vents.details.total_igv - vents.details.total_dscto;
+        vents.details.total = vents.details.subtotal
         vents.details.total = parseFloat(vents.details.total.toFixed(2));
 
         $('input[name="subtotal"]').val(vents.details.subtotal.toFixed(2));
@@ -988,7 +988,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             if (data.length>1) {
                 predioBtn.classList.add('border-item')
             }
-            predioBtn.textContent = predio.codigo_predio;
+            predioBtn.textContent = predio.posesion_informal_nombre+ ' / ' +predio.codigo_predio;
             predioBtn.onclick = function() {
                 id_predio = predio.id
                 resultadosDiv.classList.add('d-none')
