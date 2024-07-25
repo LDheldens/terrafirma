@@ -164,7 +164,6 @@ class ClientUpdateView(PermissionMixin, UpdateView):
                     client.user_id = user.id
                     client.mobile = request.POST['mobile']
                     client.address = request.POST['address']
-                    client.birthdate = request.POST['birthdate']
                     client.save()
             elif action == 'validate_data':
                 return self.validate_data()

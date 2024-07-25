@@ -62,7 +62,7 @@ class ClientForm(ModelForm):
 
     class Meta:
         model = Client
-        fields = 'first_name', 'last_name', 'dni', 'mobile', 'address'
+        fields = 'first_name', 'last_name', 'dni', 'mobile', 'address', 'email'
         widgets = {
             'mobile': forms.TextInput(
                 attrs={
@@ -92,6 +92,12 @@ class ClientForm(ModelForm):
         'autocomplete': 'off',
         'placeholder': 'Ingrese sus apellidos'
     }), label='Apellidos', max_length=50)
+    
+    email = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'autocomplete': 'off',
+        'placeholder': 'Ingrese su email'
+    }), label='Email', max_length=50)
 
     dni = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control w-100',
