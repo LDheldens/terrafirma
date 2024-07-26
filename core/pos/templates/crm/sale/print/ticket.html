@@ -90,7 +90,7 @@
     <p class="text-center desc-company">
         {{ company.address }}<br>
         Celular: {{ company.mobile }}<br>
-        Teléfono: {{ company.phone }}<br>
+        {% comment %} Teléfono: {{ company.phone }}<br> {% endcomment %}
         Web: {{ company.website }}<br>
     </p>
     <p class="ruc border-dotted">
@@ -146,6 +146,7 @@
             <td class="float-left"><b>Subtotal</b></td>
             <td class="text-right">{{ sale.subtotal }}</td>
         </tr>
+
         <tr>
             <td class="float-left"><b>Igv {{ sale.igv }}%</b></td>
             <td class="text-right">{{ sale.total_igv }}</td>
@@ -157,6 +158,14 @@
         <tr>
             <td class="float-left"><b>Total a pagar</b></td>
             <td class="text-right">{{ sale.total }}</td>
+        </tr>
+        <tr>
+            <td class="float-left"><b>Pago Inicial</b></td>
+            <td class="text-right">{{ sale.initial }}</td>
+        </tr>
+        <tr>
+            <td class="float-left"><b>Saldo pendiente</b></td>
+            <td class="text-right">{{ saldo_pendiente }}</td>
         </tr>
         </tbody>
     </table>

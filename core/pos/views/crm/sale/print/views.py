@@ -29,7 +29,7 @@ class SalePrintVoucherView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         try:
             sale = Sale.objects.get(pk=self.kwargs['pk'])
-            context = {'sale': sale, 'company': Company.objects.first()}
+            context = {'sale': sale, 'company': Company.objects.first(),'saldo_pendiente':sale.total - sale.initial}
             if sale.type_voucher == 'ticket':
                 template = get_template('crm/sale/print/ticket.html')
                 context['height'] = self.get_height_ticket()

@@ -48,7 +48,7 @@
         {{ company.address }}<br>
         Ruc: {{ company.ruc }}
         Celular: {{ company.mobile }}<br>
-        Teléfono: {{ company.phone }}<br>
+        {% comment %} Teléfono: {{ company.phone }}<br> {% endcomment %}
         Web: {{ company.website }}<br>
     </p>
     <p>
@@ -103,6 +103,14 @@
         <tr>
             <td colspan="4" class="text-right"><b>Total a pagar</b></td>
             <td class="text-right">{{ sale.total|floatformat:2 }}</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="text-right"><b>Pago Inicial</b></td>
+            <td class="text-right">{{ sale.initial }}</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="text-right"><b>Saldo pendiente</b></td>
+            <td class="text-right">{{ saldo_pendiente }}</td>
         </tr>
         <tr>
             <td colspan="5">
